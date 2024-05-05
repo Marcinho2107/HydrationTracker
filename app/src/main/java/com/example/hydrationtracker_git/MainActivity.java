@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     
-    public static void TUTNIX (){
+    public static void TUTNIX2222 (int Number){
 
         //test methode
     }
