@@ -4,25 +4,40 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|bottom"
+    android:gravity="center"
     tools:context=".MainActivity">
 
+
+
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="105dp"
-        tools:ignore="UselessParent">
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/textHydrationTracker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/baloo_tamma"
+            android:text="HydrationTracker"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="48sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/oblong"
-            android:text="login"
-            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:fontFamily="@font/oblong"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
             tools:ignore="HardcodedText" />
+
     </LinearLayout>
+
 </RelativeLayout>
