@@ -11,7 +11,7 @@
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorDarkGrey">
+        android:background="@color/colorWhite">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -78,8 +78,7 @@
                     android:layout_height="wrap_content"
                     app:labelVisibilityMode="labeled"
                     app:menu="@menu/bottom_nav_menu_home_screen"
-                    android:background="@android:color/transparent">
-                </com.google.android.material.bottomnavigation.BottomNavigationView>
+                    android:background="@android:color/transparent"/>
             </com.google.android.material.bottomappbar.BottomAppBar>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
@@ -90,8 +89,7 @@
                 android:src="@drawable/logo_floating_button"
                 android:importantForAccessibility="no"
                 app:layout_anchor="@id/bottomAppBar"
-                app:maxImageSize="62dp"
-                />
+                app:maxImageSize="62dp"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
@@ -104,8 +102,7 @@
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         app:headerLayout="@layout/right_drawer_menu_home_screen_header"
-        app:menu="@menu/right_drawer_menu_home_screen">
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/right_drawer_menu_home_screen"/>
 </androidx.drawerlayout.widget.DrawerLayout>
 
 

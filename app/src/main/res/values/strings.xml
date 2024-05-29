@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">HydrationTracker</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    //Location
+    <string name="current_location">Current Location</string>
+    <string name="get_location">Get Location</string>
     //(right_drawer_menu_home_screen)
     <string name="day_tracking">Day Tracking</string>
     <string name="week_tracking">Week Tracking</string>
@@ -8,13 +11,9 @@
     <string name="info">Info</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
-
-    //Location
-    <string name="current_location">Current Location</string>
-    <string name="get_location">Get Location</string>
-
-    //Bottom Navigation (bottom_nav_menu_home_screen)
+    //(bottom_nav_menu_home_screen)
     <string name="user">User</string>
     <string name="progress">Progress</string>
-
+    <string name="home">Home</string>
+    <string name="hydrationTracker">HydrationTracker</string>
 </resources>
