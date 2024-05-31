@@ -102,7 +102,7 @@
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         app:headerLayout="@layout/right_drawer_menu_home_screen_header"
-        app:menu="@menu/right_drawer_menu_home_screen"/>
+        app:menu="@menu/top_left_drawer_menu_home_screen"/>
 </androidx.drawerlayout.widget.DrawerLayout>
 
 
