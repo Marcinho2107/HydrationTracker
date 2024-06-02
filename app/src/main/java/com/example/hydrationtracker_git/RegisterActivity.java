@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
         Button btnSelectImage = findViewById(R.id.btnSelectImage);
         ivProfileImage = findViewById(R.id.ivProfileImage);
         Button btnRegister = findViewById(R.id.btnRegister);
+        RadioGroup radioGroupGender = findViewById(R.id.radioGroupGender);
+
 
         seekBarAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -83,11 +87,16 @@ public class RegisterActivity extends AppCompatActivity {
                 int age = seekBarAge.getProgress() + 8;
                 int height = seekBarHeight.getProgress() + 100;
 
+                // Ausgewähltes Geschlecht erfassen
+                int selectedGenderId = radioGroupGender.getCheckedRadioButtonId();
+                RadioButton selectedRadioButton = findViewById(selectedGenderId);
+                String gender = selectedRadioButton.getText().toString();
+
                 // Bildpfad speichern
                 String profileImagePath = ""; // Hier den tatsächlichen Pfad der Bilddatei angeben
 
                 UserPreferences userPreferences = new UserPreferences(RegisterActivity.this);
-                userPreferences.saveUser(username, password, age, height, profileImagePath);
+                userPreferences.saveUser(username, password, age, height, profileImagePath, gender);
 
                 // Zurück zur Login-Seite
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
