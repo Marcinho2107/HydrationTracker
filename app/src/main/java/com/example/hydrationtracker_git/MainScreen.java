@@ -94,8 +94,8 @@ public class MainScreen extends AppCompatActivity implements LocationListener, N
         button_location.setOnClickListener(v -> getLocation());
         //WeatherAPIRequest Instance
         WeatherAPIRequest weatherAPIRequest = new WeatherAPIRequest();
-        //WeatherAPIRequest Instance URL(021ce27779648254e2bc7282e66f7923)
-        weatherAPIRequest.execute("https://api.openweathermap.org/data/2.5/weather?q=YOUR_LOCATION&appid=021ce27779648254e2bc7282e66f7923");
+        //WeatherAPIRequest Instance URL()
+        weatherAPIRequest.execute("https://api.openweathermap.org/data/2.5/weather?q=YOUR_LOCATION&appid=");
     }
 
 
