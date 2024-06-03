@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
         Button btnSelectImage = findViewById(R.id.btnSelectImage);
         ivProfileImage = findViewById(R.id.ivProfileImage);
         Button btnRegister = findViewById(R.id.btnRegister);
+        RadioGroup radioGroupGender = findViewById(R.id.radioGroupGender);
+
 
         seekBarAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -77,25 +81,35 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Registrierung Logik hier einfügen
+
                 String username = etRegUsername.getText().toString();
                 String password = etRegPassword.getText().toString();
                 int age = seekBarAge.getProgress() + 8;
                 int height = seekBarHeight.getProgress() + 100;
 
-                // Bildpfad speichern
-                String profileImagePath = ""; // Hier den tatsächlichen Pfad der Bilddatei angeben
+
+                int selectedGenderId = radioGroupGender.getCheckedRadioButtonId();
+                RadioButton selectedRadioButton = findViewById(selectedGenderId);
+                String gender = selectedRadioButton.getText().toString();
+
+                // Bildpfad später noch einsetzen
+                String profileImagePath = "";
 
                 UserPreferences userPreferences = new UserPreferences(RegisterActivity.this);
-                userPreferences.saveUser(username, password, age, height, profileImagePath);
+                userPreferences.saveUser(username, password, age, height, profileImagePath, gender);
 
-                // Zurück zur Login-Seite
+                //NaCH registr auf login seite
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
+
+
+
+
+    //Galerie Bild laden
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
