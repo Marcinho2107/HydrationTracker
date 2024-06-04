@@ -48,8 +48,8 @@ public class MainScreen extends AppCompatActivity implements LocationListener, N
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         //Initializing Location Items
-        txt_view_location = findViewById(R.id.location_txt_view);
-        button_location = findViewById(R.id.location_button);
+        //txt_view_location = findViewById(R.id.location_txt_view);
+        //button_location = findViewById(R.id.location_button);
         //Initializing Main Screen Navigation Items
         fab = findViewById(R.id.floatingActionButton);
         t = findViewById(R.id.toolbar);
@@ -162,6 +162,9 @@ public class MainScreen extends AppCompatActivity implements LocationListener, N
     @Override
     public void onProviderDisabled(@NonNull String provider) {
         LocationListener.super.onProviderDisabled(provider);
+    }
+
+    public void radio_button_clicked(View view) {
     }
 }
 

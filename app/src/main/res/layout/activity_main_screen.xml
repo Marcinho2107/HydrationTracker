@@ -27,36 +27,79 @@
 
 
         <LinearLayout
+            android:id="@+id/linear_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_below="@+id/toolbar"
-            tools:ignore="UselessParent">
+            tools:ignore="UseCompoundDrawables,UselessParent">
             <ImageView
-                android:id="@+id/location_img_view"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/weather_img_view"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:padding="5dp"
                 android:importantForAccessibility="no"
-                android:src="@drawable/location_logo" />
+                android:src="@drawable/weather_test" />
             <TextView
                 android:id="@+id/location_txt_view"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/oblong"
-                android:text="@string/current_location"
+                android:text="@string/suggestion_text"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck" />
-            <Button
-                android:id="@+id/location_button"
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_below="@+id/linear_layout1">
+            <ImageView
+                android:id="@+id/empty_bottle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bottle_empty"/>
+            <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/oblong"
-                android:text="@string/get_location"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                tools:ignore="UselessParent">
+                <RadioButton
+                    android:id="@+id/radio_button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="radio_button_clicked"
+                    android:text="@string/radio_button1">
+                </RadioButton>
+                <RadioButton
+                    android:id="@+id/radio_button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="radio_button_clicked"
+                    android:text="@string/radio_button2">
+                </RadioButton>
+                <RadioButton
+                    android:id="@+id/radio_button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="radio_button_clicked"
+                    android:text="@string/radio_button3">
+                </RadioButton>
+                <RadioButton
+                    android:id="@+id/radio_button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="radio_button_clicked"
+                    android:text="@string/radio_button4">
+                </RadioButton>
+            </RadioGroup>
         </LinearLayout>
 
 
@@ -90,6 +133,18 @@
                 android:importantForAccessibility="no"
                 app:layout_anchor="@id/bottomAppBar"
                 app:maxImageSize="62dp"/>
+
+            <Button
+                android:id="@+id/drunk_it_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/oblong"
+                android:insetLeft="50sp"
+                android:text="@string/drunk_it"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_anchor="@id/floatingActionButton" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
@@ -101,7 +156,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.navTheme"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
-        app:headerLayout="@layout/right_drawer_menu_home_screen_header"
+        app:headerLayout="@layout/top_left_drawer_menu_home_screen_header"
         app:menu="@menu/top_left_drawer_menu_home_screen"/>
 </androidx.drawerlayout.widget.DrawerLayout>
 
