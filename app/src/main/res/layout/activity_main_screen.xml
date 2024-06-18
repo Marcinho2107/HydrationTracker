@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout_top"
             android:layout_marginBottom="100dp"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             tools:ignore="NotSibling">
 
@@ -93,56 +94,70 @@
                     android:gravity="center"/>
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
+            <LinearLayout
+                android:id="@+id/linearLayout_radio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                tools:ignore="UselessParent">
-                <RadioButton
-                    android:id="@+id/radioButton1"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                tools:ignore="UseCompoundDrawables">
+                <RadioGroup
+                    android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="radio_button_clicked"
-                    android:text="@string/radio_button1"
-                    tools:ignore="VisualLintButtonSize">
-                </RadioButton>
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="radio_button_clicked"
-                    android:text="@string/radio_button2"
-                    tools:ignore="VisualLintButtonSize">
-                </RadioButton>
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="radio_button_clicked"
-                    android:text="@string/radio_button3"
-                    tools:ignore="VisualLintButtonSize">
-                </RadioButton>
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="radio_button_clicked"
-                    android:text="@string/radio_button4"
-                    tools:ignore="VisualLintButtonSize">
-                </RadioButton>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    tools:ignore="UselessParent">
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="radio_button_clicked"
+                        android:text="@string/radio_button1"
+                        tools:ignore="VisualLintButtonSize">
+                    </RadioButton>
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="radio_button_clicked"
+                        android:text="@string/radio_button2"
+                        tools:ignore="VisualLintButtonSize">
+                    </RadioButton>
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="radio_button_clicked"
+                        android:text="@string/radio_button3"
+                        tools:ignore="VisualLintButtonSize">
+                    </RadioButton>
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="radio_button_clicked"
+                        android:text="@string/radio_button4"
+                        tools:ignore="VisualLintButtonSize">
+                    </RadioButton>
+                </RadioGroup>
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="120dp"
                     android:fontFamily="@font/oblong"
                     android:text="@string/drunk_it"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:ignore="ObsoleteLayoutParam"/>
-            </RadioGroup>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -217,4 +232,3 @@
         app:headerLayout="@layout/right_drawer_menu_home_screen_header"
         app:menu="@menu/top_left_drawer_menu_home_screen"
         tools:ignore="VisualLintBounds" />
-</androidx.drawerlayout.widget.DrawerLayout>
