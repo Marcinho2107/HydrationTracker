@@ -7,126 +7,177 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainScreen">
+
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
+
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_top"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorDarkCyan"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
         <FrameLayout
-            android:id="@+id/fragment_layout_fragmentContainer"
+            android:id="@+id/frameLayout_all"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
         <LinearLayout
-            android:id="@+id/linear_layout1"
+            android:id="@+id/linearLayout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@+id/toolbar_top"
             android:orientation="vertical"
-            android:layout_below="@+id/toolbar"
             tools:ignore="UseCompoundDrawables,UselessParent">
+
             <ImageView
-                android:id="@+id/weather_img_view"
+                android:id="@+id/imageView_weather"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:padding="5dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/weather_test"/>
+
             <TextView
-                android:id="@+id/location_txt_view"
+                android:id="@+id/textView_weather"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:gravity="center"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/oblong"
-                android:text="@string/suggestion_text"
+                android:text="@string/suggestion_text_normal"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:gravity="center"
                 tools:ignore="TextSizeCheck"/>
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/linear_layout2"
+            android:id="@+id/linearLayout_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@+id/linearLayout_top"
+            android:layout_marginBottom="100dp"
             android:orientation="horizontal"
-            android:layout_below="@+id/linear_layout1">
-            <ImageView
-                android:id="@+id/bottle1"
+            tools:ignore="NotSibling">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_bottle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:importantForAccessibility="no"
-                android:src="@drawable/bottle_empty"/>
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:id="@+id/imageView_emptyBottle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/bottle_empty"
+                    tools:ignore="NestedWeights"/>
+                <TextView
+                    android:id="@+id/textView_emptyBottle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/bottle1"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+            </LinearLayout>
+
             <RadioGroup
-                android:id="@+id/radio_group"
+                android:id="@+id/radioGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:layout_gravity="center"
                 tools:ignore="UselessParent">
                 <RadioButton
-                    android:id="@+id/radio_button1"
+                    android:id="@+id/radioButton1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:onClick="radio_button_clicked"
                     android:text="@string/radio_button1"
                     tools:ignore="VisualLintButtonSize">
                 </RadioButton>
                 <RadioButton
-                    android:id="@+id/radio_button2"
+                    android:id="@+id/radioButton2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:onClick="radio_button_clicked"
                     android:text="@string/radio_button2"
                     tools:ignore="VisualLintButtonSize">
                 </RadioButton>
                 <RadioButton
-                    android:id="@+id/radio_button3"
+                    android:id="@+id/radioButton3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:onClick="radio_button_clicked"
                     android:text="@string/radio_button3"
                     tools:ignore="VisualLintButtonSize">
                 </RadioButton>
                 <RadioButton
-                    android:id="@+id/radio_button4"
+                    android:id="@+id/radioButton4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:onClick="radio_button_clicked"
                     android:text="@string/radio_button4"
                     tools:ignore="VisualLintButtonSize">
                 </RadioButton>
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oblong"
+                    android:text="@string/drunk_it"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="ObsoleteLayoutParam"/>
             </RadioGroup>
-            <ImageView
-                android:id="@+id/bottle2"
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:importantForAccessibility="no"
-                android:src="@drawable/bottle_empty"/>
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:id="@+id/imageView_emptyBottle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/bottle_empty"
+                    tools:ignore="NestedWeights"/>
+                <TextView
+                    android:id="@+id/textView_emptyBottle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/bottle2"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinatorLayout"
+            android:id="@+id/coordinatorLayout_all"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottomAppBar"
+                android:id="@+id/bottomAppBar_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -135,34 +186,23 @@
                 app:fabCradleRoundedCornerRadius="50dp"
                 tools:ignore="VisualLintBottomAppBar">
                 <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottomNavigationView"
+                    android:id="@+id/bottomNavigationView_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     app:labelVisibilityMode="labeled"
-                    app:menu="@menu/bottom_nav_menu_home_screen"
-                    android:background="@android:color/transparent"/>
+                    app:menu="@menu/bottom_nav_menu_home_screen"/>
             </com.google.android.material.bottomappbar.BottomAppBar>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
+                android:id="@+id/floatingActionButton_bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/colorDarkCyan"
                 android:tint="@color/colorBlack"
                 android:src="@drawable/logo_floating_button"
                 android:importantForAccessibility="no"
-                app:layout_anchor="@id/bottomAppBar"
+                app:layout_anchor="@id/bottomAppBar_bottom"
                 app:maxImageSize="62dp"/>
-
-            <Button
-                android:id="@+id/drunk_it_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/oblong"
-                android:text="@string/drunk_it"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_anchor="@id/floatingActionButton" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
@@ -174,11 +214,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.navTheme"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
-        app:headerLayout="@layout/top_left_drawer_menu_home_screen_header"
+        app:headerLayout="@layout/right_drawer_menu_home_screen_header"
         app:menu="@menu/top_left_drawer_menu_home_screen"
         tools:ignore="VisualLintBounds" />
 </androidx.drawerlayout.widget.DrawerLayout>
-
-
-
-

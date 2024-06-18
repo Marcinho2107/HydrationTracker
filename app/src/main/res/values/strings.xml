@@ -3,14 +3,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     //Location
     <string name="current_location">Current Location</string>
+    <string name="get_location">Get Location</string>
     //Weather
-    <string name="suggestion_text">It will be warm/cold today,so your daily requirement has been increased, decreased</string>
+    <string name="suggestion_text_normal">It will be normal weather today,so your daily requirement stays the same</string>
+    <string name="suggestion_text_warmer">It will be warm weather today,so your daily requirement has been increased</string>
     //(home_screen)
     <string name="drunk_it">Drunk It</string>
     <string name="radio_button1">250ml</string>
     <string name="radio_button2">500ml</string>
     <string name="radio_button3">750ml</string>
     <string name="radio_button4">1L</string>
+    <string name="bottle1">Drink</string>
+    <string name="bottle2">Drunk</string>
     //(top_left_drawer_menu_home_screen)
     <string name="day_tracking">Day Tracking</string>
     <string name="week_tracking">Week Tracking</string>
