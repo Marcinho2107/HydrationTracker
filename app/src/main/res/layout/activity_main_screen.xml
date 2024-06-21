@@ -46,11 +46,10 @@
 
             <TextView
                 android:id="@+id/textView_weather"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_margin="10dp"
                 android:text="@string/suggestion_text_normal"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 tools:ignore="TextSizeCheck"/>
@@ -145,18 +144,16 @@
                         android:text="@string/radio_button4"
                         tools:ignore="VisualLintButtonSize">
                     </RadioButton>
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/oblong"
+                        android:text="@string/drunk_it"
+                        android:textStyle="bold"
+                        tools:ignore="NotSibling,ObsoleteLayoutParam"/>
                 </RadioGroup>
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="120dp"
-                    android:fontFamily="@font/oblong"
-                    android:text="@string/drunk_it"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:ignore="ObsoleteLayoutParam"/>
             </LinearLayout>
 
             <LinearLayout
@@ -186,6 +183,7 @@
                     android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>
+
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout_all"
@@ -232,3 +230,4 @@
         app:headerLayout="@layout/right_drawer_menu_home_screen_header"
         app:menu="@menu/top_left_drawer_menu_home_screen"
         tools:ignore="VisualLintBounds" />
+</androidx.drawerlayout.widget.DrawerLayout>
