@@ -44,21 +44,19 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemID = item.getItemId();
-                if (itemID == R.id.user) {
-                    openActivity(UserActivity.class);
+                if (itemID == R.id.main) {
+                    openActivity(MainScreen.class);
                     return true;
                 } else if (itemID == R.id.progress) {
                     openActivity(ProgressActivity.class);
                     return true;
-                } else if (itemID == R.id.main) {
-                    openActivity(MainScreen.class);
+                } else if (itemID == R.id.user) {
+                    openActivity(UserActivity.class);
                     return true;
                 }
                 return false;
             }
         });
-        // Initialize with MainScreen activity instead of HomeFragment
-        openActivity(MainScreen.class);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
