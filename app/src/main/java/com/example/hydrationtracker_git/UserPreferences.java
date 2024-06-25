@@ -40,4 +40,8 @@ public class UserPreferences {
 
         return new User(username, age, height, profileImagePath, gender);
     }
+
+    public void createTestUser() {
+        saveUser("testUser", "testPassword", 25, 175, "", "Male");
+    }
 }

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnGoToRegister = findViewById(R.id.btnGoToRegister);
 
         UserPreferences userPreferences = new UserPreferences(this);
+        userPreferences.createTestUser(); // Test-User anlegen
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
