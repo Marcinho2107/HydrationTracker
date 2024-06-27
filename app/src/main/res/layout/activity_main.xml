@@ -1,69 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HYDRATIONTRACKER"
-        android:textColor="@color/colorBlack"
+        android:text="HYDRATION-TRACKER"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:gravity="center"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:hint="Nickname"
+        android:layout_marginBottom="16dp"
         android:textColor="@color/colorBlack"
-        android:hint="Username" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:fontFamily="@font/oblong"/>
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Password"
+        android:hint="Passwort"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"
         android:textColor="@color/colorBlack"
-        android:inputType="textPassword" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:fontFamily="@font/oblong"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:text="Einloggen"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorDarkCyan"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
 
     <Button
         android:id="@+id/btnGoToRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Registrieren"
+        android:backgroundTint="@color/colorDarkCyan"
+        android:textColor="@color/colorBlack"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/oblong"/>
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/logo_header" />
 
-</LinearLayout>
 
+</LinearLayout>

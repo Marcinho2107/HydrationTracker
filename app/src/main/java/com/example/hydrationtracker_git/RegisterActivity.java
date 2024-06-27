@@ -1,79 +1,91 @@
 package com.example.hydrationtracker_git;
 
-
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.RadioGroup;
-import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class RegisterActivity extends AppCompatActivity {
-
     private static final int SELECT_PICTURE = 1;
-    private ImageView ivProfileImage;
-    private Bitmap selectedImage;
+    private ImageView imageViewProfile;
+    private String profileImagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText etRegUsername = findViewById(R.id.etRegUsername);
-        EditText etRegPassword = findViewById(R.id.etRegPassword);
-        SeekBar seekBarAge = findViewById(R.id.seekBarAge);
-        SeekBar seekBarHeight = findViewById(R.id.seekBarHeight);
-        TextView tvAge = findViewById(R.id.tvAge);
-        TextView tvHeight = findViewById(R.id.tvHeight);
+        EditText etUsername = findViewById(R.id.etUsername);
+        EditText etPassword = findViewById(R.id.etPassword);
+        SeekBar seekBarAlter = findViewById(R.id.seekBarAlter);
+        TextView textViewAlter = findViewById(R.id.textViewAlter);
+        SeekBar seekBarGroesse = findViewById(R.id.seekBarGroesse);
+        TextView textViewGroesse = findViewById(R.id.textViewGroesse);
+        RadioGroup radioGroupGeschlecht = findViewById(R.id.radioGroupGeschlecht);
         Button btnSelectImage = findViewById(R.id.btnSelectImage);
-        ivProfileImage = findViewById(R.id.ivProfileImage);
+        imageViewProfile = findViewById(R.id.imageViewProfile);
         Button btnRegister = findViewById(R.id.btnRegister);
-        RadioGroup radioGroupGender = findViewById(R.id.radioGroupGender);
 
+        UserPreferences userPreferences = new UserPreferences(this);
 
-        seekBarAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        // Listener für SeekBar Alter
+        seekBarAlter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvAge.setText("Alter: " + (progress + 8));
+                textViewAlter.setText(String.valueOf(progress));
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // nicht verwendet
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // nicht verwendet
+            }
         });
 
-        seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        // Listener für SeekBar Körpergröße
+        seekBarGroesse.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvHeight.setText("Körpergröße: " + (progress + 100) + "cm");
+                textViewGroesse.setText(String.valueOf(progress));
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // nicht verwendet
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // nicht verwendet
+            }
         });
 
         btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, SELECT_PICTURE);
             }
         });
@@ -81,48 +93,64 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                int alter = seekBarAlter.getProgress();
+                int groesse = seekBarGroesse.getProgress();
+                int selectedGeschlechtId = radioGroupGeschlecht.getCheckedRadioButtonId();
+                String geschlecht = ((RadioButton) findViewById(selectedGeschlechtId)).getText().toString();
 
-                String username = etRegUsername.getText().toString();
-                String password = etRegPassword.getText().toString();
-                int age = seekBarAge.getProgress() + 8;
-                int height = seekBarHeight.getProgress() + 100;
+                if (username.isEmpty() || password.isEmpty() || profileImagePath == null) {
+                    Toast.makeText(RegisterActivity.this, "Bitte trage alle deine Daten ein und wähle dein Profilbild aus.", Toast.LENGTH_SHORT).show();
+                } else {
+                    int wasserbedarf = Wasserbedarfsrechner.berechneWasserbedarf(alter, groesse);
+                    userPreferences.saveUser(username, password, alter, groesse, geschlecht, profileImagePath);
+                    userPreferences.saveWasserbedarf(wasserbedarf);
 
-
-                int selectedGenderId = radioGroupGender.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton = findViewById(selectedGenderId);
-                String gender = selectedRadioButton.getText().toString();
-
-                // Bildpfad später noch einsetzen
-                String profileImagePath = "";
-
-                UserPreferences userPreferences = new UserPreferences(RegisterActivity.this);
-                userPreferences.saveUser(username, password, age, height, profileImagePath, gender);
-
-                //NaCH registr auf login seite
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
+                    // Daten an WasserbedarfActivity übergeben
+                    Intent intent = new Intent(RegisterActivity.this, WasserbedarfActivity.class);
+                    intent.putExtra("profileImagePath", profileImagePath);
+                    intent.putExtra("wasserbedarf", wasserbedarf);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-
-
-
-
-    //Galerie Bild laden
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
-            try {
-                InputStream imageStream = getContentResolver().openInputStream(selectedImageUri);
-                selectedImage = BitmapFactory.decodeStream(imageStream);
-                ivProfileImage.setImageBitmap(selectedImage);
-                ivProfileImage.setVisibility(View.VISIBLE);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (selectedImageUri != null) {
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                    // Bild um 90 Grad nach rechts drehen
+                    bitmap = rotateBitmap(bitmap, 90);
+                    imageViewProfile.setImageBitmap(bitmap);
+                    profileImagePath = saveImageToInternalStorage(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        }
+    }
+
+    private Bitmap rotateBitmap(Bitmap bitmap, int degrees) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degrees);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    private String saveImageToInternalStorage(Bitmap bitmap) {
+        File directory = getDir("profile_images", MODE_PRIVATE);
+        File imageFile = new File(directory, "profile_image.png");
+        try (FileOutputStream fos = new FileOutputStream(imageFile)) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            return imageFile.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

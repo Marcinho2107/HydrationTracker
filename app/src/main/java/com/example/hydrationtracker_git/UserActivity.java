@@ -1,34 +1,46 @@
 package com.example.hydrationtracker_git;
 
-import android.content.Intent;
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UserActivity extends AppCompatActivity {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            mParam1 = intent.getStringExtra(ARG_PARAM1);
-            mParam2 = intent.getStringExtra(ARG_PARAM2);
-        }
-    }
+        ImageView imageViewProfile = findViewById(R.id.imageViewProfile);
+        TextView tvUsername = findViewById(R.id.tvUsername);
+        TextView tvAlter = findViewById(R.id.tvAlter);
+        TextView tvGroesse = findViewById(R.id.tvGroesse);
+        TextView tvGeschlecht = findViewById(R.id.tvGeschlecht);
+        TextView tvWasserbedarf = findViewById(R.id.tvWasserbedarf);
 
-    public static Intent newIntent(Context context, String param1, String param2){
-        Intent intent = new Intent(context, UserActivity.class);
-        intent.putExtra(ARG_PARAM1, param1);
-        intent.putExtra(ARG_PARAM2, param2);
-        return intent;
+        UserPreferences userPreferences = new UserPreferences(this);
+
+        // Daten aus den SharedPreferences abrufen
+        String username = userPreferences.getUsername();
+        int alter = userPreferences.getAlter();
+        int groesse = userPreferences.getGroesse();
+        String geschlecht = userPreferences.getGeschlecht();
+        String profileImagePath = userPreferences.getProfileImagePath();
+        int wasserbedarf = userPreferences.getWasserbedarf();
+
+        // Daten in den TextViews anzeigen
+        tvUsername.setText("Username: " + username);
+        tvAlter.setText("Alter: " + alter);
+        tvGroesse.setText("Körpergröße: " + groesse + " cm");
+        tvGeschlecht.setText("Geschlecht: " + geschlecht);
+        tvWasserbedarf.setText("Täglicher Wasserbedarf: " + wasserbedarf + " ml");
+
+        // Profilbild anzeigen, falls vorhanden
+        if (profileImagePath != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(profileImagePath);
+            imageViewProfile.setImageBitmap(bitmap);
+        }
     }
 }

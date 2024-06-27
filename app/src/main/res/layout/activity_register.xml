@@ -1,141 +1,159 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Benutzer anlegen:"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
 
-        <EditText
-            android:id="@+id/etRegUsername"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nickname"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Passwort"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <!-- Alter -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alter: "
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <SeekBar
+        android:id="@+id/seekBarAlter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:min="7"
+        android:max="100"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorDarkCyan"/>
+
+    <TextView
+        android:id="@+id/textViewAlter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <!-- Körpergröße -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Körpergröße (cm)"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <SeekBar
+        android:id="@+id/seekBarGroesse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:max="220"
+        android:min="90"
+        android:backgroundTint="@color/colorDarkCyan" />
+
+    <TextView
+        android:id="@+id/textViewGroesse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="90"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <!-- Geschlecht -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Geschlecht"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupGeschlecht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/radioMaennlich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Männlich"
             android:textColor="@color/colorBlack"
-            android:hint="Username"/>
+            android:fontFamily="@font/oblong"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <EditText
-            android:id="@+id/etRegPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Password"
+        <RadioButton
+            android:id="@+id/radioWeiblich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weiblich"
             android:textColor="@color/colorBlack"
-            android:inputType="textPassword"/>
+            android:fontFamily="@font/oblong"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioDivers"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Divers"
             android:textColor="@color/colorBlack"
-            android:text="Alter"/>
-
-
-
-        <SeekBar
-            android:id="@+id/seekBarAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:max="92"/>
-
-        <TextView
-            android:id="@+id/tvAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:text="Alter: 8"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:text="Körpergröße (cm)"/>
-
-        <SeekBar
-            android:id="@+id/seekBarHeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="120"/>
-
-
-
-        <TextView
-            android:id="@+id/tvHeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:text="Körpergröße: 100cm"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroupGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/radioFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female" />
-
-                <RadioButton
-                    android:id="@+id/radioOther"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Other" />
-        </RadioGroup>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <Button
-            android:id="@+id/btnSelectImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Profilbild auswählen"/>
-
-        <ImageView
-            android:id="@+id/ivProfileImage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:visibility="gone"/>
-
-
+            android:fontFamily="@font/oblong"/>
+    </RadioGroup>
 
     <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"/>
+        android:id="@+id/btnSelectImage"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Profilbild auswählen"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorDarkCyan"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
 
-
-
-
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/person_dummy"
+        android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Registrierung abschließen"
+        android:backgroundTint="@color/colorDarkCyan"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"/>
 </LinearLayout>
-

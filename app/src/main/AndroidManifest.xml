@@ -29,6 +29,21 @@
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
+            android:name=".WasserbedarfActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".Wasserbedarfsrechner"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".UserPreferences"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,6 +1,7 @@
 package com.example.hydrationtracker_git;
 
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         EditText etUsername = findViewById(R.id.etUsername);
         EditText etPassword = findViewById(R.id.etPassword);
@@ -21,18 +22,19 @@ public class MainActivity extends AppCompatActivity {
         Button btnGoToRegister = findViewById(R.id.btnGoToRegister);
 
         UserPreferences userPreferences = new UserPreferences(this);
-        userPreferences.createTestUser(); // Test-User anlegen
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
+
                 if (userPreferences.login(username, password)) {
+                    Toast.makeText(MainActivity.this, "Das Login war erfolgreich!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, MainScreen.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login wurde fehlgeschlagen", Toast.LENGTH_SHORT).show();
                 }
             }
         });
