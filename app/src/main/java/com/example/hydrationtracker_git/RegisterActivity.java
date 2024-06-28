@@ -2,6 +2,7 @@ package com.example.hydrationtracker_git;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -98,20 +99,39 @@ public class RegisterActivity extends AppCompatActivity {
                 int alter = seekBarAlter.getProgress();
                 int groesse = seekBarGroesse.getProgress();
                 int selectedGeschlechtId = radioGroupGeschlecht.getCheckedRadioButtonId();
-                String geschlecht = ((RadioButton) findViewById(selectedGeschlechtId)).getText().toString();
 
-                if (username.isEmpty() || password.isEmpty() || profileImagePath == null) {
-                    Toast.makeText(RegisterActivity.this, "Bitte trage alle deine Daten ein und wähle dein Profilbild aus.", Toast.LENGTH_SHORT).show();
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Bitte trage alle deine Daten ein.", Toast.LENGTH_SHORT).show();
+                } else if (userPreferences.isUsernameTaken(username)) {
+                    Toast.makeText(RegisterActivity.this, "Benutzername bereits vergeben.", Toast.LENGTH_SHORT).show();
                 } else {
+                    if (selectedGeschlechtId == -1) {
+                        Toast.makeText(RegisterActivity.this, "Bitte wähle dein Geschlecht aus.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String geschlecht = ((RadioButton) findViewById(selectedGeschlechtId)).getText().toString();
+
+                    if (profileImagePath == null) {
+                        profileImagePath = saveDefaultProfileImage();
+                    }
                     int wasserbedarf = Wasserbedarfsrechner.berechneWasserbedarf(alter, groesse);
                     userPreferences.saveUser(username, password, alter, groesse, geschlecht, profileImagePath);
-                    userPreferences.saveWasserbedarf(wasserbedarf);
+                    userPreferences.saveWasserbedarf(username, wasserbedarf);
 
                     // Daten an WasserbedarfActivity übergeben
                     Intent intent = new Intent(RegisterActivity.this, WasserbedarfActivity.class);
                     intent.putExtra("profileImagePath", profileImagePath);
                     intent.putExtra("wasserbedarf", wasserbedarf);
+                    intent.putExtra("username", username);
                     startActivity(intent);
+
+                    // Zurück zur MainScreen Activity gehen und den Benutzernamen übergeben
+                    Intent mainIntent = new Intent(RegisterActivity.this, MainScreen.class);
+                    mainIntent.putExtra("username", username);
+                    startActivity(mainIntent);
+
+                    finish();
                 }
             }
         });
@@ -152,5 +172,10 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String saveDefaultProfileImage() {
+        Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.person_dummy);
+        return saveImageToInternalStorage(defaultBitmap);
     }
 }

@@ -3,7 +3,6 @@ package com.example.hydrationtracker_git;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,24 +11,32 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
-/** @noinspection ALL*/
 public class MainScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout dl;
     BottomNavigationView bnv;
     Toolbar t;
-    FloatingActionButton fab;
+    UserPreferences userPreferences;
+    String currentUsername; // Hinzufügen einer Variablen, um den aktuellen Benutzernamen zu speichern
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        // Initialisieren der UserPreferences und Abrufen des aktuellen Benutzernamens
+        userPreferences = new UserPreferences(this);
+        currentUsername = getIntent().getStringExtra("username");
+
+        // Hier sollte der Benutzername bereits bekannt sein
+        if (currentUsername == null) {
+            currentUsername = userPreferences.getUsername("default_user"); // Beispielweise ein default Wert
+        }
+
         // Initializing Main Screen Navigation Items
-        fab = findViewById(R.id.floatingActionButton_bottom);
         t = findViewById(R.id.toolbar_top);
         setSupportActionBar(t);
         dl = findViewById(R.id.drawer_layout);
@@ -51,16 +58,13 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                     openActivity(ProgressActivity.class);
                     return true;
                 } else if (itemID == R.id.user) {
-                    openActivity(UserActivity.class);
+                    // Den aktuellen Benutzernamen an die UserActivity übergeben
+                    Intent intent = new Intent(MainScreen.this, UserActivity.class);
+                    intent.putExtra("username", currentUsername);
+                    startActivity(intent);
                     return true;
                 }
                 return false;
-            }
-        });
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainScreen.this, "Upload", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -94,8 +98,5 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     private void openActivity(Class<?> activityClass) {
         Intent intent = new Intent(this, activityClass);
         startActivity(intent);
-    }
-
-    public void radio_button_clicked(View view) {
     }
 }

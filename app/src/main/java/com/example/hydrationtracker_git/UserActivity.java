@@ -22,13 +22,15 @@ public class UserActivity extends AppCompatActivity {
 
         UserPreferences userPreferences = new UserPreferences(this);
 
+        // Angenommen, der Benutzername wird in einem Intent extra übergeben
+        String username = getIntent().getStringExtra("username");
+
         // Daten aus den SharedPreferences abrufen
-        String username = userPreferences.getUsername();
-        int alter = userPreferences.getAlter();
-        int groesse = userPreferences.getGroesse();
-        String geschlecht = userPreferences.getGeschlecht();
-        String profileImagePath = userPreferences.getProfileImagePath();
-        int wasserbedarf = userPreferences.getWasserbedarf();
+        int alter = userPreferences.getAlter(username);
+        int groesse = userPreferences.getGroesse(username);
+        String geschlecht = userPreferences.getGeschlecht(username);
+        String profileImagePath = userPreferences.getProfileImagePath(username);
+        int wasserbedarf = userPreferences.getWasserbedarf(username);
 
         // Daten in den TextViews anzeigen
         tvUsername.setText("Username: " + username);
