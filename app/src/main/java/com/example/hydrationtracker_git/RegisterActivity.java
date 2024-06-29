@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                     // Bild um 90 Grad nach rechts drehen
-                    bitmap = rotateBitmap(bitmap, 90);
+                    bitmap = rotateBitmap(bitmap, 270);
                     imageViewProfile.setImageBitmap(bitmap);
                     profileImagePath = saveImageToInternalStorage(bitmap);
                 } catch (IOException e) {

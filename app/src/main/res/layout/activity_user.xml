@@ -77,5 +77,15 @@
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
 
+    <Button
+        android:id="@+id/buttonBackToMainMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zurück zum Hauptmenü"
+        android:backgroundTint="@color/colorDarkCyan"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/oblong"
+        android:layout_marginTop="16dp"/>
+
 
 </LinearLayout>
