@@ -126,12 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("username", username);
                     startActivity(intent);
 
-                    // Zurück zur MainScreen Activity gehen und den Benutzernamen übergeben
-                    Intent mainIntent = new Intent(RegisterActivity.this, MainScreen.class);
-                    mainIntent.putExtra("username", username);
-                    startActivity(mainIntent);
 
-                    finish();
+
+
                 }
             }
         });

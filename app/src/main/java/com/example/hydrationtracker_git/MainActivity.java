@@ -28,16 +28,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-
                 if (userPreferences.login(username, password)) {
                     Toast.makeText(MainActivity.this, "Das Login war erfolgreich!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, MainScreen.class);
+                    intent.putExtra("username", username);  // Benutzername hinzufügen
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "Login wurde fehlgeschlagen", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         btnGoToRegister.setOnClickListener(new View.OnClickListener() {
             @Override

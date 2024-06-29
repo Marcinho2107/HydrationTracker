@@ -2,6 +2,7 @@ package com.example.hydrationtracker_git;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -31,12 +32,18 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         userPreferences = new UserPreferences(this);
         currentUsername = getIntent().getStringExtra("username");
 
-        // Hier sollte der Benutzername bereits bekannt sein
         if (currentUsername == null) {
-            currentUsername = userPreferences.getUsername("default_user"); // Beispielweise ein default Wert
+            Log.e("MainScreen", "Benutzername ist null");
+            currentUsername = "default_user"; // Beispielweise ein default Wert
+        } else {
+            Log.d("MainScreen", "Benutzername ist " + currentUsername);
         }
 
-        // Initializing Main Screen Navigation Items
+
+
+
+
+    // Initializing Main Screen Navigation Items
         t = findViewById(R.id.toolbar_top);
         setSupportActionBar(t);
         dl = findViewById(R.id.drawer_layout);
@@ -59,9 +66,9 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                     return true;
                 } else if (itemID == R.id.user) {
                     // Den aktuellen Benutzernamen an die UserActivity übergeben
-                    Intent intent = new Intent(MainScreen.this, UserActivity.class);
-                    intent.putExtra("username", currentUsername);
-                    startActivity(intent);
+                    Intent intent2 = new Intent(MainScreen.this, UserActivity.class);
+                    intent2.putExtra("username", currentUsername);
+                    startActivity(intent2);
                     return true;
                 }
                 return false;

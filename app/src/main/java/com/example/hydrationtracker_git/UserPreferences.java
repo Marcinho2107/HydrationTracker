@@ -2,6 +2,7 @@ package com.example.hydrationtracker_git;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class UserPreferences {
     private static final String PREFS_NAME = "UserPrefs";
@@ -11,6 +12,7 @@ public class UserPreferences {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
+    // Überprüfen, ob die Daten korrekt gespeichert werden
     public void saveUser(String username, String password, int alter, int groesse, String geschlecht, String profileImagePath) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(username + "_username", username);
@@ -20,7 +22,10 @@ public class UserPreferences {
         editor.putString(username + "_geschlecht", geschlecht);
         editor.putString(username + "_profile_image_path", profileImagePath);
         editor.apply();
+        // Loggen der gespeicherten Werte zur Überprüfung
+        Log.d("UserPreferences", "User gespeichert: " + username);
     }
+
 
     public void saveWasserbedarf(String username, int wasserbedarf) {
         SharedPreferences.Editor editor = preferences.edit();
