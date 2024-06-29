@@ -1,6 +1,5 @@
 package com.example.hydrationtracker_git;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,10 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;
     private ImageView imageViewProfile;
     private String profileImagePath;
-    private DrawerLayout dl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,36 +175,4 @@ public class RegisterActivity extends AppCompatActivity {
         Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.person_dummy);
         return saveImageToInternalStorage(defaultBitmap);
     }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (dl.isDrawerOpen(GravityCompat.START)) {
-            dl.closeDrawer(GravityCompat.START); // Schließe den Drawer, wenn er offen ist
-        } else {
-            // Zeige einen Bestätigungsdialog
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("App verlassen")
-                    .setMessage("Möchten Sie die App wirklich verlassen?")
-                    .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // App vollständig beenden
-                            finishAffinity();
-                        }
-                    })
-                    .setNegativeButton("Nein", null)
-                    .create();
-
-            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface arg0) {
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorBlack));
-                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorBlack));
-                }
-            });
-
-            dialog.show();
-        }
-    }
-    }
-
-
+}
