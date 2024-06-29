@@ -27,4 +27,34 @@
     <string name="progress">Progress</string>
     <string name="home">Home</string>
     <string name="hydrationTracker">HydrationTracker</string>
+
+    //(main_activity)
+    <string name="HYDRATIONTRACKER">HYDRATION-TRACKER</string>
+    <string name="username">Nickname</string>
+    <string name="password">Password</string>
+    <string name="login">Einloggen</string>
+    <string name="register">Registrieren</string>
+    //(wasserbedarf)
+    <string name="ChangeWater">Keine Sorge, du kannst deinen Wasserbedarf nachträglich ändern!</string>
+    <string name="backlogin">Zurück zum Login</string>
+    //(useract_daten)
+    <string name="youracc">Dein Hydration Account:</string>
+    <string name="changedata">Daten ändern</string>
+    <string name="backtomainsc">Zurück zum Hauptmenü</string>
+    //(registrierung)
+    <string name="createuser">Benutzer anlegen:</string>
+    <string name="userage">Alter: </string>
+    <string name="bodyheight">Körpergröße (cm)</string>
+    <string name="sex">Geschlecht: </string>
+    <string name="male">Männlich</string>
+    <string name="female">Weiblich</string>
+    <string name="others">Divers</string>
+    <string name="setpp">Profilbild auswählen</string>
+    <string name="complregis">Registrierung abschließen</string>
+    //(editUser)
+    <string name="changeuserdata">Benutzerdaten ändern:</string>
+    <string name="waterneed">Wasserbedarf (ml)</string>
+    <string name="changepp">Profilbild ändern</string>
+    <string name="savechanges">Änderungen speichern</string>
+
 </resources>

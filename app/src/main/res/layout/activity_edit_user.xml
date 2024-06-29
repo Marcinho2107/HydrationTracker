@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Benutzer ändern:"
+        android:text="@string/changeuserdata"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -20,7 +20,7 @@
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Nickname"
+        android:hint="@string/username"
         android:layout_marginBottom="16dp"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
@@ -29,7 +29,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Passwort"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"
         android:textColor="@color/colorBlack"
@@ -39,7 +39,7 @@
         android:id="@+id/etWasserbedarf"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Wasserbedarf (ml)"
+        android:hint="@string/waterneed"
         android:layout_marginBottom="16dp"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alter: "
+        android:text="@string/userage"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
@@ -75,7 +75,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Körpergröße (cm)"
+        android:text="@string/bodyheight"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
@@ -102,7 +102,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Geschlecht"
+        android:text="@string/sex"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
@@ -118,7 +118,7 @@
             android:id="@+id/rbMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Männlich"
+            android:text="@string/male"
             android:textColor="@color/colorBlack"
             android:fontFamily="@font/oblong"/>
 
@@ -126,7 +126,7 @@
             android:id="@+id/rbFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weiblich"
+            android:text="@string/female"
             android:textColor="@color/colorBlack"
             android:fontFamily="@font/oblong"/>
 
@@ -134,7 +134,7 @@
             android:id="@+id/rbDivers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Divers"
+            android:text="@string/others"
             android:textColor="@color/colorBlack"
             android:fontFamily="@font/oblong"/>
     </RadioGroup>
@@ -151,7 +151,7 @@
         android:id="@+id/btnSelectImage"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="Profilbild ändern"
+        android:text="@string/changepp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorDarkCyan"
         android:textColor="@color/colorBlack"
@@ -161,7 +161,7 @@
         android:id="@+id/btnSaveChanges"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="Änderungen speichern"
+        android:text="@string/savechanges"
         android:backgroundTint="@color/colorDarkCyan"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/oblong"/>
