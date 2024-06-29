@@ -27,7 +27,7 @@ public class WasserbedarfActivity extends AppCompatActivity {
         UserPreferences userPreferences = new UserPreferences(this);
         String username = getIntent().getStringExtra("username");
 
-        tvWasserbedarf.setText("Hallo"+username+",dein täglicher Wasserbedarf beträgt: " + wasserbedarf + " ml");
+        tvWasserbedarf.setText("Hallo "+username+", dein täglicher Wasserbedarf beträgt: " + wasserbedarf + " ml");
 
         if (profileImagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(profileImagePath);

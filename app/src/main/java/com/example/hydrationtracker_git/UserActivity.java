@@ -50,7 +50,7 @@ public class UserActivity extends AppCompatActivity {
         Log.d(TAG, "ProfileImagePath: " + profileImagePath);
         Log.d(TAG, "Wasserbedarf: " + wasserbedarf);
 
-        tvUsername.setText("Username: " + username);
+        tvUsername.setText("Nickname: " + username);
         tvAlter.setText("Alter: " + alter);
         tvGroesse.setText("Körpergröße: " + groesse + " cm");
         tvGeschlecht.setText("Geschlecht: " + geschlecht);
