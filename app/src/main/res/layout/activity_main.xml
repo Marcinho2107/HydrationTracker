@@ -14,8 +14,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="32dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <EditText
         android:id="@+id/etUsername"
@@ -23,8 +22,7 @@
         android:layout_height="50dp"
         android:hint="@string/username"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -33,8 +31,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/btnLogin"
@@ -43,8 +40,7 @@
         android:text="@string/login"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorDarkCyan"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/btnGoToRegister"
@@ -53,8 +49,7 @@
         android:text="@string/register"
         android:backgroundTint="@color/colorDarkCyan"
         android:textColor="@color/colorBlack"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="@font/oblong"/>
+        android:layout_marginBottom="50dp"/>
 
     <ImageView
         android:id="@+id/imageView2"

@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:text="@string/youracc"
         android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"
         android:layout_marginBottom="16dp"
         android:textSize="24sp"
         android:textAlignment="center"/>
@@ -29,8 +28,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/tvAlter"
@@ -38,8 +36,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/tvGroesse"
@@ -47,8 +44,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/tvGeschlecht"
@@ -56,8 +52,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/tvWasserbedarf"
@@ -65,8 +60,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/button2"
@@ -74,8 +68,7 @@
         android:layout_height="wrap_content"
         android:text="@string/changedata"
         android:backgroundTint="@color/colorDarkCyan"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/buttonBackToMainMenu"
@@ -84,8 +77,6 @@
         android:text="@string/backtomainsc"
         android:backgroundTint="@color/colorDarkCyan"
         android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"
         android:layout_marginTop="16dp"/>
-
 
 </LinearLayout>

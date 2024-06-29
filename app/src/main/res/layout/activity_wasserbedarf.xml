@@ -12,16 +12,14 @@
         android:textSize="25sp"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <ImageView
         android:id="@+id/imageViewProfile"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="16dp" />
-
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -31,8 +29,7 @@
         android:textColor="@color/colorBlack"
         android:textAlignment="center"
         android:layout_marginBottom="16dp"
-        android:textSize="25sp"
-        android:fontFamily="@font/oblong"/>
+        android:textSize="25sp"/>
 
     <Button
         android:id="@+id/btnOk"
@@ -40,7 +37,6 @@
         android:layout_height="wrap_content"
         android:text="@string/backlogin"
         android:backgroundTint="@color/colorDarkCyan"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
 </LinearLayout>

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        />
 
     <EditText
         android:id="@+id/etUsername"
@@ -22,8 +22,7 @@
         android:layout_height="50dp"
         android:hint="@string/username"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -32,8 +31,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack" />
 
     <EditText
         android:id="@+id/etWasserbedarf"
@@ -41,8 +39,7 @@
         android:layout_height="50dp"
         android:hint="@string/waterneed"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <!-- Alter -->
     <TextView
@@ -50,8 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/userage"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <SeekBar
         android:id="@+id/seekBarAlter"
@@ -68,8 +64,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:layout_marginBottom="10dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <!-- Körpergröße -->
     <TextView
@@ -77,8 +72,7 @@
         android:layout_height="wrap_content"
         android:text="@string/bodyheight"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <SeekBar
         android:id="@+id/seekBarGroesse"
@@ -95,8 +89,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:layout_marginBottom="10dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <!-- Geschlecht -->
     <TextView
@@ -104,8 +97,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sex"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <RadioGroup
         android:id="@+id/radioGroupGeschlecht"
@@ -119,24 +111,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/male"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oblong"/>
+            android:textColor="@color/colorBlack"/>
 
         <RadioButton
             android:id="@+id/rbFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/female"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oblong"/>
+            android:textColor="@color/colorBlack"/>
 
         <RadioButton
             android:id="@+id/rbDivers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/others"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oblong"/>
+            android:textColor="@color/colorBlack"/>
     </RadioGroup>
 
     <ImageView
@@ -154,8 +143,7 @@
         android:text="@string/changepp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorDarkCyan"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/btnSaveChanges"
@@ -163,6 +151,5 @@
         android:layout_height="48dp"
         android:text="@string/savechanges"
         android:backgroundTint="@color/colorDarkCyan"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/oblong"/>
+        android:textColor="@color/colorBlack"/>
 </LinearLayout>
