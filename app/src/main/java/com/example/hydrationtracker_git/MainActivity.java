@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 if (userPreferences.login(username, password)) {
-                    Toast.makeText(MainActivity.this, "Das Login war erfolgreich!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "The login was successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, MainScreen.class);
-                    intent.putExtra("username", username);  // Benutzername hinzufügen
+                    intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MainActivity.this, "Login wurde fehlgeschlagen", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

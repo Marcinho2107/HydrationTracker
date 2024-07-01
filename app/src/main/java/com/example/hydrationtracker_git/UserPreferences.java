@@ -21,7 +21,7 @@ public class UserPreferences {
         editor.putString(username + "_geschlecht", geschlecht);
         editor.putString(username + "_profile_image_path", profileImagePath);
         editor.apply();
-        Log.d("UserPreferences", "User gespeichert: " + username);
+        Log.d("UserPreferences", "User saved: " + username);
     }
 
     public void saveWasserbedarf(String username, int wasserbedarf) {

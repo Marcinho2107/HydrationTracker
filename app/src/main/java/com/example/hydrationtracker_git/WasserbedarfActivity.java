@@ -27,7 +27,7 @@ public class WasserbedarfActivity extends AppCompatActivity {
         UserPreferences userPreferences = new UserPreferences(this);
         String username = getIntent().getStringExtra("username");
 
-        tvWasserbedarf.setText("Hallo "+username+", dein täglicher Wasserbedarf beträgt: " + wasserbedarf + " ml");
+        tvWasserbedarf.setText("Hello "+username+", your daily water demand is:  " + wasserbedarf + " ml");
 
         if (profileImagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(profileImagePath);
@@ -37,7 +37,7 @@ public class WasserbedarfActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Zurück zur Login-Aktivität
+
                 Intent loginIntent = new Intent(WasserbedarfActivity.this, MainActivity.class);
                 loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginIntent);

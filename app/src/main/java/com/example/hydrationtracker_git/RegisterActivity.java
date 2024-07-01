@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         UserPreferences userPreferences = new UserPreferences(this);
 
-        // Listener für SeekBar Alter
+
         seekBarAlter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Listener für SeekBar Körpergröße
+
         seekBarGroesse.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -74,12 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // nicht verwendet
+
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // nicht verwendet
+
             }
         });
 
@@ -101,12 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
                 int selectedGeschlechtId = radioGroupGeschlecht.getCheckedRadioButtonId();
 
                 if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Bitte trage alle deine Daten ein.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Please enter all your data!", Toast.LENGTH_SHORT).show();
                 } else if (userPreferences.isUsernameTaken(username)) {
-                    Toast.makeText(RegisterActivity.this, "Benutzername bereits vergeben.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Username already taken!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (selectedGeschlechtId == -1) {
-                        Toast.makeText(RegisterActivity.this, "Bitte wähle dein Geschlecht aus.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Please select your gender!", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userPreferences.saveUser(username, password, alter, groesse, geschlecht, profileImagePath);
                     userPreferences.saveWasserbedarf(username, wasserbedarf);
 
-                    // Daten an WasserbedarfActivity übergeben
+
                     Intent intent = new Intent(RegisterActivity.this, WasserbedarfActivity.class);
                     intent.putExtra("profileImagePath", profileImagePath);
                     intent.putExtra("wasserbedarf", wasserbedarf);
@@ -142,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (selectedImageUri != null) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                    // Bild um 90 Grad nach rechts drehen
+
                     bitmap = rotateBitmap(bitmap, 270);
                     imageViewProfile.setImageBitmap(bitmap);
                     profileImagePath = saveImageToInternalStorage(bitmap);

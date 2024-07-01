@@ -34,7 +34,7 @@ public class UserActivity extends AppCompatActivity {
 
         if (username == null || username.isEmpty()) {
             Log.e(TAG, "No username provided!");
-            tvUsername.setText("Fehler: Kein Benutzername angegeben");
+            tvUsername.setText("Error: No user given! ");
             return;
         }
 
@@ -44,17 +44,13 @@ public class UserActivity extends AppCompatActivity {
         String profileImagePath = userPreferences.getProfileImagePath(username);
         int wasserbedarf = userPreferences.getWasserbedarf(username);
 
-        Log.d(TAG, "Alter: " + alter);
-        Log.d(TAG, "Groesse: " + groesse);
-        Log.d(TAG, "Geschlecht: " + geschlecht);
-        Log.d(TAG, "ProfileImagePath: " + profileImagePath);
-        Log.d(TAG, "Wasserbedarf: " + wasserbedarf);
+
 
         tvUsername.setText("Nickname: " + username);
-        tvAlter.setText("Alter: " + alter);
-        tvGroesse.setText("Körpergröße: " + groesse + " cm");
-        tvGeschlecht.setText("Geschlecht: " + geschlecht);
-        tvWasserbedarf.setText("Täglicher Wasserbedarf: " + wasserbedarf + " ml");
+        tvAlter.setText("Age: " + alter);
+        tvGroesse.setText("Bodyheight: " + groesse + " cm");
+        tvGeschlecht.setText("Gender: " + geschlecht);
+        tvWasserbedarf.setText("Daily Water Demand: " + wasserbedarf + " ml");
 
         if (profileImagePath != null && !profileImagePath.isEmpty()) {
             Bitmap bitmap = BitmapFactory.decodeFile(profileImagePath);
@@ -75,6 +71,7 @@ public class UserActivity extends AppCompatActivity {
 
         buttonBackToMainMenu.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, MainScreen.class);
+            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         });

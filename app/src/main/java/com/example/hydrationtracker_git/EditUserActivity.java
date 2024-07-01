@@ -27,7 +27,7 @@ public class EditUserActivity extends AppCompatActivity {
     private SeekBar seekBarAlter, seekBarGroesse;
     private TextView textViewAlter, textViewGroesse;
     private RadioGroup radioGroupGeschlecht;
-    private Button btnSaveChanges, btnSelectImage;
+    private Button btnSaveChanges, btnSelectImage, btnIncrease250, btnIncrease500, btnIncrease1000;
     private ImageView imageViewProfile;
     private UserPreferences userPreferences;
     private String username, profileImagePath;
@@ -47,6 +47,9 @@ public class EditUserActivity extends AppCompatActivity {
         radioGroupGeschlecht = findViewById(R.id.radioGroupGeschlecht);
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
         btnSelectImage = findViewById(R.id.btnSelectImage);
+        btnIncrease250 = findViewById(R.id.btnIncrease250);
+        btnIncrease500 = findViewById(R.id.btnIncrease500);
+        btnIncrease1000 = findViewById(R.id.btnIncrease1000);
         imageViewProfile = findViewById(R.id.imageViewProfile);
         userPreferences = new UserPreferences(this);
 
@@ -65,6 +68,8 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textViewAlter.setText(String.valueOf(progress));
+
+                updateWasserbedarf();
             }
 
             @Override
@@ -78,6 +83,8 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textViewGroesse.setText(String.valueOf(progress));
+
+                updateWasserbedarf();
             }
 
             @Override
@@ -101,6 +108,27 @@ public class EditUserActivity extends AppCompatActivity {
                 startActivityForResult(intent, SELECT_PICTURE);
             }
         });
+
+        btnIncrease250.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseWasserbedarf(250);
+            }
+        });
+
+        btnIncrease500.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseWasserbedarf(500);
+            }
+        });
+
+        btnIncrease1000.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseWasserbedarf(1000);
+            }
+        });
     }
 
     private void loadUserData(String username) {
@@ -113,11 +141,11 @@ public class EditUserActivity extends AppCompatActivity {
             profileImagePath = userPreferences.getProfileImagePath(username);
 
             String geschlecht = userPreferences.getGeschlecht(username);
-            if (geschlecht.equals("Männlich")) {
+            if (geschlecht.equals("Male")) {
                 ((RadioButton) findViewById(R.id.rbMale)).setChecked(true);
-            } else if (geschlecht.equals("Weiblich")) {
+            } else if (geschlecht.equals("Female")) {
                 ((RadioButton) findViewById(R.id.rbFemale)).setChecked(true);
-            } else if (geschlecht.equals("Divers")) {
+            } else if (geschlecht.equals("Others")) {
                 ((RadioButton) findViewById(R.id.rbDivers)).setChecked(true);
             }
 
@@ -128,14 +156,28 @@ public class EditUserActivity extends AppCompatActivity {
         }
     }
 
+    private void updateWasserbedarf() {
+        int alter = seekBarAlter.getProgress();
+        int groesse = seekBarGroesse.getProgress();
+        int wasserbedarf = Wasserbedarfsrechner.berechneWasserbedarf(alter, groesse);
+        etWasserbedarf.setText(String.valueOf(wasserbedarf));
+    }
+
+    private void increaseWasserbedarf(int amount) {
+        int currentWasserbedarf = Integer.parseInt(etWasserbedarf.getText().toString());
+        int newWasserbedarf = currentWasserbedarf + amount;
+        etWasserbedarf.setText(String.valueOf(newWasserbedarf));
+    }
+
     private void saveChanges() {
         String newUsername = etUsername.getText().toString();
         String newPassword = etPassword.getText().toString();
         int newAlter = seekBarAlter.getProgress();
         int newGroesse = seekBarGroesse.getProgress();
-        int newWasserbedarf = Integer.parseInt(etWasserbedarf.getText().toString());
         int selectedGeschlechtId = radioGroupGeschlecht.getCheckedRadioButtonId();
         String newGeschlecht = ((RadioButton) findViewById(selectedGeschlechtId)).getText().toString();
+
+        int newWasserbedarf = Integer.parseInt(etWasserbedarf.getText().toString());
 
         userPreferences.saveUser(newUsername, newPassword, newAlter, newGroesse, newGeschlecht, profileImagePath);
         userPreferences.saveWasserbedarf(newUsername, newWasserbedarf);
