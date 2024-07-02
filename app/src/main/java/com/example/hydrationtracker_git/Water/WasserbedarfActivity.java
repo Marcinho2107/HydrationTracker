@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.R;
 import com.example.hydrationtracker_git.Register_and_Login.Login;
-import com.example.hydrationtracker_git.User.UserPreferences;
+import com.example.hydrationtracker_git.User_Progress.UserPreferences;
 
 /**
  * Die Klasse {@code WasserbedarfActivity} ist dafür zuständig das der täglichen Wasserbedarf des Benutzers angezeigt wird.

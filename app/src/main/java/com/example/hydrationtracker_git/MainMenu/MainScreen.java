@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -25,20 +24,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
-
 import com.example.hydrationtracker_git.R;
-import com.example.hydrationtracker_git.User.UserActivity;
-import com.example.hydrationtracker_git.User.UserPreferences;
+import com.example.hydrationtracker_git.User_Progress.UserActivity;
+import com.example.hydrationtracker_git.User_Progress.ProgressActivity;
+import com.example.hydrationtracker_git.User_Progress.UserPreferences;
 import com.example.hydrationtracker_git.weather_and_location.weatherData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
 import org.json.JSONObject;
 import android.Manifest;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import java.util.Locale;
+import java.util.Calendar;
 import cz.msebera.android.httpclient.Header;
 
 public class MainScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -97,7 +96,14 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 openActivity(MainScreen.class);
                 return true;
             } else if (itemID==R.id.progress) {
-                openActivity(ProgressActivity.class);
+                // Den aktuellen Benutzernamen an die ProgressActivity1 übergeben
+                Intent intent1=new Intent(MainScreen.this, ProgressActivity.class);
+                intent1.putExtra("username", currentUsername);
+                intent1.putExtra("suggestedAmountNumber2", suggestedAmountNumber2TextView.getText().toString());
+                intent1.putExtra("certainAmountPercentage", certainAmountPercentageTextView.getText().toString());
+                intent1.putExtra("selectedAmount", selectedAmount);
+                intent1.putExtra("totalSelectedAmount", totalSelectedAmount);
+                startActivity(intent1);
                 return true;
             } else if (itemID==R.id.user) {
                 // Den aktuellen Benutzernamen an die UserActivity übergeben
@@ -152,6 +158,9 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 showNotification();
             }
             calculateAndDisplayPercentage();
+            // Daily Intake Save
+            int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+            userPreferences.saveDailyIntake(currentUsername, dayOfWeek, totalSelectedAmount);
         });
         RadioButton rb1 = findViewById(R.id.rb1);
         RadioButton rb2 = findViewById(R.id.rb2);
@@ -183,12 +192,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.user) {
-            openActivity(UserActivity.class);
+        if (id == R.id.main) {
+            openActivity(MainScreen.class);
         } else if (id == R.id.progress) {
             openActivity(ProgressActivity.class);
-        } else if (id == R.id.main) {
-            openActivity(MainScreen.class);
+        } else if (id == R.id.user) {
+            openActivity(UserActivity.class);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

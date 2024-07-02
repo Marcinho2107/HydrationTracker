@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -19,10 +18,10 @@
         android:theme="@style/Theme.HydrationTracker_GIT"
         tools:targetApi="31">
         <activity
-            android:name=".User.UserActivity"
+            android:name=".User_Progress.ProgressActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenu.ProgressActivity"
+            android:name=".User_Progress.UserActivity"
             android:exported="false" />
         <activity
             android:name=".MainMenu.MainScreen"
@@ -32,15 +31,15 @@
             android:exported="true" />
         <activity
             android:name=".Water.WasserbedarfActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Water.Wasserbedarfsrechner"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
-            android:name=".User.UserPreferences"
-            android:exported="true"/>
+            android:name=".User_Progress.UserPreferences"
+            android:exported="true" />
         <activity
-            android:name=".User.EditUserActivity"
+            android:name=".User_Progress.EditUserActivity"
             android:exported="true" />
         <activity
             android:name=".Register_and_Login.Login"
@@ -55,7 +54,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <service android:name="TemperatureMonitoring.TemperatureMonitoringService"
+
+        <service
+            android:name="TemperatureMonitoring.TemperatureMonitoringService"
             android:enabled="true"
             android:exported="false"
             tools:ignore="MissingClass" />

@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git.User;
+package com.example.hydrationtracker_git.User_Progress;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,10 +17,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.R;
 import com.example.hydrationtracker_git.Water.Wasserbedarfsrechner;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

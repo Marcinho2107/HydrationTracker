@@ -44,14 +44,13 @@
     <string name="home">Home</string>
     <string name="hydrationTracker">HydrationTracker</string>
 
-
-
-    //alert_dialog
+    //TemperatureMonitoring
     <string name="alert1">Good Job!</string>
     <string name="alert2">You are staying hydrated!</string>
     <string name="ok">OK</string>
 
-
+    //Progress
+    <string name="weekly_tracking">Your Weekly Progress:</string>
 
 
     //(main_activity)

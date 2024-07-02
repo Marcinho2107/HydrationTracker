@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git.User;
+package com.example.hydrationtracker_git.User_Progress;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,32 +10,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
+import java.util.List;
 
-/**
- * Die Klasse {@code UserActivity} zeigt die Userdetails an und ermöglicht das Bearbeiten und Zurückgehen zum Hauptmenü.
- */
-
-public class UserActivity extends AppCompatActivity {
-    private static final String TAG = "UserActivity";
-
+public class ProgressActivity extends AppCompatActivity {
+    private static final String TAG = "ProgressActivity";
+    private TextView weeklyTrackingTextView;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_progress);
 
         ImageView imageViewProfile = findViewById(R.id.imageViewProfile);
         TextView tvUsername = findViewById(R.id.tvUsername);
-        TextView tvAlter = findViewById(R.id.tvAlter);
-        TextView tvGroesse = findViewById(R.id.tvGroesse);
-        TextView tvGeschlecht = findViewById(R.id.tvGeschlecht);
-        TextView tvWasserbedarf = findViewById(R.id.tvWasserbedarf);
-        Button buttonEdit = findViewById(R.id.button2);
         Button buttonBackToMainMenu = findViewById(R.id.buttonBackToMainMenu);
-
+        weeklyTrackingTextView = findViewById(R.id.weeklyTrackingTextView);
         UserPreferences userPreferences = new UserPreferences(this);
         String username = getIntent().getStringExtra("username");
         String suggestedAmountNumber2 = getIntent().getStringExtra("suggestedAmountNumber2");
@@ -51,17 +42,8 @@ public class UserActivity extends AppCompatActivity {
             return;
         }
 
-        int alter = userPreferences.getAlter(username);
-        int groesse = userPreferences.getGroesse(username);
-        String geschlecht = userPreferences.getGeschlecht(username);
         String profileImagePath = userPreferences.getProfileImagePath(username);
-        int wasserbedarf = userPreferences.getWasserbedarf(username);
-
         tvUsername.setText("Nickname: " + username);
-        tvAlter.setText("Age: " + alter);
-        tvGroesse.setText("Bodyheight: " + groesse + " cm");
-        tvGeschlecht.setText("Gender: " + geschlecht);
-        tvWasserbedarf.setText("Daily Water Demand: " + wasserbedarf + " ml");
 
         if (profileImagePath != null && !profileImagePath.isEmpty()) {
             Bitmap bitmap = BitmapFactory.decodeFile(profileImagePath);
@@ -74,14 +56,8 @@ public class UserActivity extends AppCompatActivity {
             imageViewProfile.setImageResource(R.drawable.person_dummy);
         }
 
-        buttonEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(UserActivity.this, EditUserActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-        });
-
         buttonBackToMainMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(UserActivity.this, MainScreen.class);
+            Intent intent = new Intent(ProgressActivity.this, MainScreen.class);
             intent.putExtra("username", username);
             intent.putExtra("suggestedAmountNumber2", suggestedAmountNumber2);
             intent.putExtra("certainAmountPercentage", certainAmountPercentage);
@@ -90,6 +66,18 @@ public class UserActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        displayWeeklyTracking(username);
+    }
+    private void displayWeeklyTracking(String username) {
+        UserPreferences userPreferences = new UserPreferences(this);
+        List<Integer> weeklyIntake = userPreferences.getWeeklyIntake(username);
 
+        StringBuilder trackingText = new StringBuilder("Weekly Water Intake:\n");
+        String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+        for (int i = 0; i < weeklyIntake.size(); i++) {
+            trackingText.append(daysOfWeek[i]).append(": ").append(weeklyIntake.get(i)).append(" ml\n");
+        }
+        weeklyTrackingTextView.setText(trackingText.toString());
     }
 }

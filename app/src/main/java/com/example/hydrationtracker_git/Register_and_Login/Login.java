@@ -7,11 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
 import com.example.hydrationtracker_git.TemperatureMonitoring.TemperatureMonitoringService;
-import com.example.hydrationtracker_git.User.UserPreferences;
+import com.example.hydrationtracker_git.User_Progress.UserPreferences;
 
 /**
  * Die Klasse {@code Login} ermöglicht es dem Benutzer, sich anzumelden oder zur Registrierungsseite zu wechseln.
