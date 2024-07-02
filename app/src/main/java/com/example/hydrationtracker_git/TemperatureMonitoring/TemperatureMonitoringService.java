@@ -62,11 +62,10 @@ public abstract class TemperatureMonitoringService extends Service {
         Intent batteryStatus = registerReceiver(null, filter);
         if (batteryStatus != null) {
             int temperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
-            int temperatureThreshold = 220; // 35 degrees Celsius
+            int temperatureThreshold = 220;
 
             return temperature >= temperatureThreshold;
         } else {
-            // No Battery
             return false;
         }
     }

@@ -19,7 +19,6 @@ public class weatherData {
      * @return Ein `weatherData` Objekt, initialisiert mit den Daten des JSONObjects,
      * oder null, wenn das JSON-Parsing fehlschlägt.
      */
-
     public static weatherData fromJson(JSONObject jsonObject) {
         try {
             weatherData wd = new weatherData();
@@ -69,7 +68,13 @@ public class weatherData {
         return wdType;
     }
 
-    // Private method to update weather icon based on weather condition ID
+    /**
+     * Aktualisiert das Wettersymbol auf der Grundlage der angegebenen Wetterlage-ID.
+     *
+     * @param condition Die Wetterbedingungs-ID.
+     * @return Eine Zeichenkette, die das Wettersymbol darstellt. Mögliche Werte sind:
+     * "bewölkt", "sonnig", "bewölkt_sonnig", "verschneit", "regnerisch", "windig", "Sturm" und "Fragezeichen".
+     */
     private static String updateWeatherIcon(int condition) {
         if (condition >= 801 && condition <= 804) {
             return "cloudy";

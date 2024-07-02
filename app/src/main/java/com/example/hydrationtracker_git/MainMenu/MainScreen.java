@@ -46,16 +46,17 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // Navigation Menu Main Screen
+
     DrawerLayout dl;
+    NavigationView nv;
     BottomNavigationView bnv;
     Toolbar t;
 
-    // Weather + Location
+
     static final String API_KEY = "021ce27779648254e2bc7282e66f7923";
     static final String Open_Weather_URL = "https://api.openweathermap.org/data/2.5/weather";
-    static final long MIN_TIME = 5000; //5 Seconds
-    static final float MIN_DISTANCE = 1000; //1 Meter
+    static final long MIN_TIME = 5000;
+    static final float MIN_DISTANCE = 1000;
     static final int REQUEST_CODE = 101;
     String Location_Provider = LocationManager.GPS_PROVIDER;
     TextView mNameOfCity, mWeatherState, mTemperature;
@@ -63,11 +64,7 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     LocationManager mLocationManager;
     LocationListener mLocationListener;
     private TextView dailyRequirementTextView;
-
-    // User + Wasserbedarf
-    String currentUsername; // Hinzufügen einer Variablen, um den aktuellen Benutzernamen zu speichern
-
-    // Radio Buttons + Calculations + Images
+    String currentUsername;
     private TextView suggestedAmountNumber1TextView;
     private TextView suggestedAmountNumber2TextView;
     private TextView certainAmountPercentageTextView;
@@ -76,17 +73,16 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     private int totalSelectedAmount = 0;
 
 
-
     @SuppressLint({"SetTextI18n", "CutPasteId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        // Navigation Menu Main Screen
+        dl=findViewById(R.id.drawer_layout);
         t=findViewById(R.id.toolbar_top);
         setSupportActionBar(t);
-        dl=findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this, dl, t, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         dl.addDrawerListener(toggle);
         toggle.syncState();
@@ -100,7 +96,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 openActivity(MainScreen.class);
                 return true;
             } else if (itemID==R.id.progress) {
-                // Den aktuellen Benutzernamen an die ProgressActivity1 übergeben
                 Intent intent1=new Intent(MainScreen.this, ProgressActivity.class);
                 intent1.putExtra("username", currentUsername);
                 intent1.putExtra("suggestedAmountNumber2", suggestedAmountNumber2TextView.getText().toString());
@@ -110,7 +105,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(intent1);
                 return true;
             } else if (itemID==R.id.user) {
-                // Den aktuellen Benutzernamen an die UserActivity übergeben
                 Intent intent2=new Intent(MainScreen.this, UserActivity.class);
                 intent2.putExtra("username", currentUsername);
                 intent2.putExtra("suggestedAmountNumber2", suggestedAmountNumber2TextView.getText().toString());
@@ -123,14 +117,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             return false;
         });
 
-        // Weather + Location
         mWeatherState = findViewById(R.id.weatherCondition);
         mTemperature = findViewById(R.id.temperature);
         mWeatherIcon = findViewById(R.id.weatherSymbol);
         mNameOfCity = findViewById(R.id.cityName);
         dailyRequirementTextView = findViewById(R.id.dailyRequirementTextView);
 
-        // User + Wasserbedarf
         UserPreferences userPreferences = new UserPreferences(this);
         currentUsername = getIntent().getStringExtra("username");
         int wasserbedarf = userPreferences.getWasserbedarf(currentUsername);
@@ -139,7 +131,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
         suggestedAmountNumber2TextView.setText("0 ml");
 
-        // Initialisieren der UserPreferences und Abrufen des aktuellen Benutzernamens
         if (currentUsername == null) {
             Log.e("MainScreen", "Benutzername ist null");
             currentUsername = "default_user"; // Beispielweise ein default Wert
@@ -147,7 +138,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             Log.d("MainScreen", "Benutzername ist " + currentUsername);
         }
 
-        // Radio Buttons + Calculations + Images
         suggestedAmountNumber1TextView = findViewById(R.id.textView_suggested_amount_number1);
         suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
         certainAmountPercentageTextView = findViewById(R.id.textView_certain_amount_percentage);
@@ -156,13 +146,11 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         Button updateButton = findViewById(R.id.button);
         imageViewBottleRight = findViewById(R.id.imageView_bottle_right);
         updateButton.setOnClickListener(v -> {
-            // textView_suggested_amount_number2 update
             suggestedAmountNumber2TextView.setText(totalSelectedAmount + " ml");
             if (totalSelectedAmount >= getSuggestedAmountNumber1()) {
                 showNotification();
             }
             calculateAndDisplayPercentage();
-            // Daily Intake Save
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
             userPreferences.saveDailyIntake(currentUsername, dayOfWeek, totalSelectedAmount);
         });
@@ -188,11 +176,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         });
     }
 
-
-
-
-
-    // Navigation Menu Main Screen
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -228,8 +211,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         startActivity(intent);
         finish();
     }
-
-    // Weather + Location
     @Override
     protected void onResume() {
         super.onResume();
@@ -252,8 +233,8 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             certainAmountPercentageTextView.setText(certainAmountPercentage);
         }
         updateBottleImage(calculatePercentage());
-        this.selectedAmount = selectedAmount; // assuming selectedAmount is a class-level variable
-        this.totalSelectedAmount = totalSelectedAmount; // assuming totalSelectedAmount is a class-level variable
+        this.selectedAmount = selectedAmount;
+        this.totalSelectedAmount = totalSelectedAmount;
     }
 
     /**
@@ -368,20 +349,17 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         updateDailyRequirementText(mTemperature.getText().toString());
     }
     private int parseTemperature(String temperatureText) {
-        int temperature = 0; // Default value or error handling
+        int temperature = 0;
 
         if (temperatureText != null && !temperatureText.isEmpty()) {
-            // Remove non-numeric characters from the string
             String numericPart = temperatureText.replaceAll("\\D", "");
 
             try {
-                // Parse the numeric part to an integer
                 temperature = Integer.parseInt(numericPart);
             } catch (NumberFormatException e) {
-                e.printStackTrace(); // Handle or log the exception
+                e.printStackTrace();
             }
         }
-
         return temperature;
     }
 
@@ -398,13 +376,11 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
      */
     @SuppressLint("SetTextI18n")
     private void updateDailyRequirementText(String temperatureText) {
-        int temperature = parseTemperature(temperatureText); // Parse temperature from temperatureText
-
+        int temperature = parseTemperature(temperatureText);
         if (temperature == 0) {
             dailyRequirementTextView.setText("No Weather Information! (No Value)");
             return;
         }
-
         try {
             if (temperature <= 25) {
                 dailyRequirementTextView.setText("Normal Weather, drinking amount stays normal!");
@@ -414,7 +390,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 dailyRequirementTextView.setText("Hot Weather, drinking amount should significantly increase!");
             }
         } catch (NumberFormatException e) {
-            // Handle case where temperatureText cannot be parsed to an integer
             dailyRequirementTextView.setText("No Weather Information! (No Parsing)");
         }
     }
@@ -423,12 +398,10 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
      * Berechnet und zeigt den Prozentsatz der verbrauchten Menge im Verhältnis zur empfohlenen Menge an.
      * Aktualisiert die UI-Elemente, die den berechneten Prozentsatz anzeigen, und aktualisiert das Flaschenbild entsprechend.
      */
-    // Radio Buttons + Calculations + Images
     private void calculateAndDisplayPercentage() {
         String suggestedAmountStr = suggestedAmountNumber1TextView.getText().toString().trim();
         String consumedAmountStr = suggestedAmountNumber2TextView.getText().toString().trim();
         if (!suggestedAmountStr.isEmpty() && !consumedAmountStr.isEmpty()) {
-            // Parse values to integers + calculate percentages + update textView_certain_amount_percentage
             int suggestedAmount = Integer.parseInt(suggestedAmountStr.replace(" ml", ""));
             int consumedAmount = Integer.parseInt(consumedAmountStr.replace(" ml", ""));
             double percentage = ((double) consumedAmount / suggestedAmount) * 100;
