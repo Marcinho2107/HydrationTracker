@@ -48,11 +48,8 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
 
 
     DrawerLayout dl;
-    NavigationView nv;
     BottomNavigationView bnv;
     Toolbar t;
-
-
     static final String API_KEY = "021ce27779648254e2bc7282e66f7923";
     static final String Open_Weather_URL = "https://api.openweathermap.org/data/2.5/weather";
     static final long MIN_TIME = 5000;
@@ -73,16 +70,15 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     private int totalSelectedAmount = 0;
 
 
+
     @SuppressLint({"SetTextI18n", "CutPasteId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-
-        dl=findViewById(R.id.drawer_layout);
         t=findViewById(R.id.toolbar_top);
         setSupportActionBar(t);
-
+        dl=findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this, dl, t, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         dl.addDrawerListener(toggle);
         toggle.syncState();
@@ -116,13 +112,11 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             }
             return false;
         });
-
         mWeatherState = findViewById(R.id.weatherCondition);
         mTemperature = findViewById(R.id.temperature);
         mWeatherIcon = findViewById(R.id.weatherSymbol);
         mNameOfCity = findViewById(R.id.cityName);
         dailyRequirementTextView = findViewById(R.id.dailyRequirementTextView);
-
         UserPreferences userPreferences = new UserPreferences(this);
         currentUsername = getIntent().getStringExtra("username");
         int wasserbedarf = userPreferences.getWasserbedarf(currentUsername);
@@ -130,14 +124,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         suggestedAmountTextView.setText(wasserbedarf + " ml");
         suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
         suggestedAmountNumber2TextView.setText("0 ml");
-
         if (currentUsername == null) {
             Log.e("MainScreen", "Benutzername ist null");
             currentUsername = "default_user"; // Beispielweise ein default Wert
         } else {
             Log.d("MainScreen", "Benutzername ist " + currentUsername);
         }
-
         suggestedAmountNumber1TextView = findViewById(R.id.textView_suggested_amount_number1);
         suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
         certainAmountPercentageTextView = findViewById(R.id.textView_certain_amount_percentage);
@@ -175,7 +167,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             totalSelectedAmount += selectedAmount;
         });
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -225,7 +216,6 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         String certainAmountPercentage = mIntent.getStringExtra("certainAmountPercentage");
         int selectedAmount = mIntent.getIntExtra("selectedAmount", 0);
         int totalSelectedAmount = mIntent.getIntExtra("totalSelectedAmount", 0);
-
         if (suggestedAmountNumber2 != null) {
             suggestedAmountNumber2TextView.setText(suggestedAmountNumber2);
         }
@@ -360,6 +350,7 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 e.printStackTrace();
             }
         }
+
         return temperature;
     }
 
@@ -377,6 +368,7 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     @SuppressLint("SetTextI18n")
     private void updateDailyRequirementText(String temperatureText) {
         int temperature = parseTemperature(temperatureText);
+
         if (temperature == 0) {
             dailyRequirementTextView.setText("No Weather Information! (No Value)");
             return;
