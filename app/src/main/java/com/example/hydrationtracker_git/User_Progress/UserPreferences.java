@@ -1,8 +1,9 @@
-package com.example.hydrationtracker_git.User;
-
+package com.example.hydrationtracker_git.User_Progress;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserPreferences {
@@ -70,5 +71,22 @@ public class UserPreferences {
     }
     public SharedPreferences getSharedPreferences() {
         return preferences;
+    }
+    public void saveDailyIntake(String username, int dayOfWeek, int intake) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(username + "_day" + dayOfWeek, intake);
+        editor.apply();
+    }
+
+    public int getDailyIntake(String username, int dayOfWeek) {
+        return preferences.getInt(username + "_day" + dayOfWeek, 0);
+    }
+
+    public List<Integer> getWeeklyIntake(String username) {
+        List<Integer> weeklyIntake = new ArrayList<>();
+        for (int i = 1; i <= 7; i++) {
+            weeklyIntake.add(getDailyIntake(username, i));
+        }
+        return weeklyIntake;
     }
 }

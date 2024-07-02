@@ -16,15 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.R;
-import com.example.hydrationtracker_git.User.UserPreferences;
+import com.example.hydrationtracker_git.User_Progress.UserPreferences;
 import com.example.hydrationtracker_git.Water.WasserbedarfActivity;
 import com.example.hydrationtracker_git.Water.Wasserbedarfsrechner;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

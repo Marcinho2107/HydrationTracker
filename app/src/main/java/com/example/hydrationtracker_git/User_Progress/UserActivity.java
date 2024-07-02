@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git.User;
+package com.example.hydrationtracker_git.User_Progress;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
 
@@ -52,7 +51,6 @@ public class UserActivity extends AppCompatActivity {
         String geschlecht = userPreferences.getGeschlecht(username);
         String profileImagePath = userPreferences.getProfileImagePath(username);
         int wasserbedarf = userPreferences.getWasserbedarf(username);
-
         tvUsername.setText("Nickname: " + username);
         tvAlter.setText("Age: " + alter);
         tvGroesse.setText("Bodyheight: " + groesse + " cm");
@@ -86,6 +84,5 @@ public class UserActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
     }
 }

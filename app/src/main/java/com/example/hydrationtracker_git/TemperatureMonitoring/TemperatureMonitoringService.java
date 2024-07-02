@@ -12,13 +12,10 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.IBinder;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
-
 import java.util.Objects;
 
 public abstract class TemperatureMonitoringService extends Service {
