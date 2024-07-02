@@ -72,7 +72,7 @@ public abstract class TemperatureMonitoringService extends Service {
     }
 
     /**
-     * Shows a notification if the phone temperature is above the threshold.
+     * Zeigt eine Benachrichtigung an, wenn die Temperatur des Telefons über dem Schwellenwert liegt.
      */
     @SuppressLint("ObsoleteSdkInt")
     private void showNotification() {
