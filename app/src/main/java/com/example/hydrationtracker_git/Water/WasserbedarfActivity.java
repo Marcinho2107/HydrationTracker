@@ -16,6 +16,10 @@ import com.example.hydrationtracker_git.R;
 import com.example.hydrationtracker_git.Register_and_Login.Login;
 import com.example.hydrationtracker_git.User.UserPreferences;
 
+/**
+ * Die Klasse {@code WasserbedarfActivity} ist dafür zuständig das der täglichen Wasserbedarf des Benutzers angezeigt wird.
+ */
+
 public class WasserbedarfActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override

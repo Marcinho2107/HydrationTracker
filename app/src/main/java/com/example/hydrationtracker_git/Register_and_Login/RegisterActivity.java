@@ -29,6 +29,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * Die Klasse {@code RegisterActivity} ermöglicht es dem User, sich zu registrieren, indem er seine Daten eingibt und ein Profilbild auswählt.
+ */
+
 public class RegisterActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;
     private ImageView imageViewProfile;
@@ -61,12 +65,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // nicht verwendet
+
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // nicht verwendet
+
             }
         });
 
@@ -158,11 +162,26 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Dreht das Bitmap Bild , man kann Grad eingeben.
+     *
+     * @param bitmap Das Bitmap-Bild, das gedreht wird.
+     * @param degrees Die Anzahl der Grad, um die das Bild gedreht werden soll.
+     * @return Das gedrehte Bitmap-Bild.
+     */
+
     private Bitmap rotateBitmap(Bitmap bitmap, int degrees) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
+
+    /**
+     * Speichert das Bitmap-Bild im internen Speicher.
+     *
+     * @param bitmap Das Bitmap-Bild, das gespeichert werden soll.
+     * @return Der Pfad des gespeicherten Bitmap-Bildes.
+     */
 
     private String saveImageToInternalStorage(Bitmap bitmap) {
         File directory = getDir("profile_images", MODE_PRIVATE);
@@ -175,6 +194,12 @@ public class RegisterActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    /**
+     * Speichert das Default-Profilbild im internen Speicher.
+     *
+     * @return Der Pfad des gespeicherten Standard-Profilbildes.
+     */
 
     private String saveDefaultProfileImage() {
         Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.person_dummy);

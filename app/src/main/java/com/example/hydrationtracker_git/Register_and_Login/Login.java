@@ -13,13 +13,17 @@ import com.example.hydrationtracker_git.R;
 import com.example.hydrationtracker_git.TemperatureMonitoring.TemperatureMonitoringService;
 import com.example.hydrationtracker_git.User.UserPreferences;
 
+/**
+ * Die Klasse {@code Login} ermöglicht es dem Benutzer, sich anzumelden oder zur Registrierungsseite zu wechseln.
+ */
+
 public class Login extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Temperature Monitoring
+
         startService(new Intent(this, TemperatureMonitoringService.class));
 
         EditText etUsername = findViewById(R.id.etUsername);

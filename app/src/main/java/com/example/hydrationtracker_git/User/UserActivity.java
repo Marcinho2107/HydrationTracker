@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
 
+/**
+ * Die Klasse {@code UserActivity} zeigt die Userdetails an und ermöglicht das Bearbeiten und Zurückgehen zum Hauptmenü.
+ */
+
 public class UserActivity extends AppCompatActivity {
     private static final String TAG = "UserActivity";
 

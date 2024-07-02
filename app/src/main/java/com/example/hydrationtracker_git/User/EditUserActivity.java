@@ -25,6 +25,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * Die Klasse {@code EditUserActivity} ermöglicht das Verändern der Userdaten und des Profilbildes.
+ */
+
 public class EditUserActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;
     private EditText etUsername, etPassword, etWasserbedarf;
@@ -57,17 +61,17 @@ public class EditUserActivity extends AppCompatActivity {
         imageViewProfile = findViewById(R.id.imageViewProfile);
         userPreferences = new UserPreferences(this);
 
-        // Set SeekBar ranges
+
         seekBarAlter.setMin(7);
         seekBarAlter.setMax(100);
         seekBarGroesse.setMin(90);
         seekBarGroesse.setMax(220);
 
-        // Load user data
+
         username = getIntent().getStringExtra("username");
         loadUserData(username);
 
-        // SeekBar listeners
+
         seekBarAlter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -135,6 +139,12 @@ public class EditUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Ladet die Userdaten bezogen auf dem Nicknamen.
+     *
+     * @param username Der Nickname des Users.
+     */
+
     private void loadUserData(String username) {
         if (username != null) {
             etUsername.setText(userPreferences.getUsername(username));
@@ -160,6 +170,10 @@ public class EditUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Aktualisiert den Wasserbedarf bezogen des Alters und der Körpergröße.
+     */
+
     private void updateWasserbedarf() {
         int alter = seekBarAlter.getProgress();
         int groesse = seekBarGroesse.getProgress();
@@ -167,11 +181,21 @@ public class EditUserActivity extends AppCompatActivity {
         etWasserbedarf.setText(String.valueOf(wasserbedarf));
     }
 
+    /**
+     * Erhöht den Wasserbedarf um den Value der Auswahl.
+     *
+     * @param amount Der Wert, um den der Wasserbedarf erhöht werden soll.
+     */
+
     private void increaseWasserbedarf(int amount) {
         int currentWasserbedarf = Integer.parseInt(etWasserbedarf.getText().toString());
         int newWasserbedarf = currentWasserbedarf + amount;
         etWasserbedarf.setText(String.valueOf(newWasserbedarf));
     }
+
+    /**
+     * Speichert einfach nur die Änderungen der Userdaten.
+     */
 
     private void saveChanges() {
         String newUsername = etUsername.getText().toString();
@@ -210,11 +234,26 @@ public class EditUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Dreht das Bitmap Bild , man kann Grad eingeben.
+     *
+     * @param bitmap Das Bitmap-Bild, das gedreht wird.
+     * @param degrees Die Anzahl der Grad, um die das Bild gedreht werden soll.
+     * @return Das gedrehte Bitmap-Bild.
+     */
+
     private Bitmap rotateBitmap(Bitmap bitmap, int degrees) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
+
+    /**
+     * Speichert das Bitmap-Bild im internen Speicher.
+     *
+     * @param bitmap Das Bitmap-Bild, das gespeichert werden soll.
+     * @return Der Pfad des gespeicherten Bitmap-Bildes.
+     */
 
     private String saveImageToInternalStorage(Bitmap bitmap) {
         File directory = getDir("profile_images", MODE_PRIVATE);
