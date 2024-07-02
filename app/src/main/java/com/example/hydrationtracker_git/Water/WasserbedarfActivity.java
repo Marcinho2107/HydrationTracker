@@ -1,5 +1,6 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.Water;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +12,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hydrationtracker_git.R;
+import com.example.hydrationtracker_git.Register_and_Login.Login;
+import com.example.hydrationtracker_git.User.UserPreferences;
+
 public class WasserbedarfActivity extends AppCompatActivity {
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,7 @@ public class WasserbedarfActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent loginIntent = new Intent(WasserbedarfActivity.this, MainActivity.class);
+                Intent loginIntent = new Intent(WasserbedarfActivity.this, Login.class);
                 loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginIntent);
             }

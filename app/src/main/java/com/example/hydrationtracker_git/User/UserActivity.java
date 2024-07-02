@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.User;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hydrationtracker_git.MainMenu.MainScreen;
+import com.example.hydrationtracker_git.R;
 
 public class UserActivity extends AppCompatActivity {
     private static final String TAG = "UserActivity";
@@ -75,5 +78,6 @@ public class UserActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
     }
 }

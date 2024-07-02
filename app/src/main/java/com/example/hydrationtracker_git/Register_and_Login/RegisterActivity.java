@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.Register_and_Login;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,6 +19,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hydrationtracker_git.R;
+import com.example.hydrationtracker_git.User.UserPreferences;
+import com.example.hydrationtracker_git.Water.WasserbedarfActivity;
+import com.example.hydrationtracker_git.Water.Wasserbedarfsrechner;
 
 import java.io.File;
 import java.io.FileOutputStream;

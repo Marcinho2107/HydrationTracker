@@ -6,13 +6,15 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainScreen">
+    android:background="@color/colorWhite"
+    tools:context=".MainMenu.MainScreen">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        tools:ignore="ExtraText">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_top"
@@ -27,66 +29,175 @@
             android:id="@+id/frameLayout_all"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
+        //Weather + Location
         <LinearLayout
             android:id="@+id/linearLayout_top"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_below="@+id/toolbar_top"
-            android:orientation="vertical"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables,UselessParent">
 
-            <ImageView
-                android:id="@+id/imageView_weather"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:padding="5dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/weather_test"/>
+            //Left Side
+            <LinearLayout
+                android:id="@+id/linearLayout_top_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_above="@+id/findCity"
+                    android:orientation="vertical"
+                    tools:ignore="ObsoleteLayoutParam">
+                    <TextView
+                        android:id="@+id/temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="°C"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"
+                        android:paddingStart="20dp"
+                        tools:ignore="HardcodedText,RtlSymmetry">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/weatherCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="---------"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"
+                        android:paddingStart="20dp"
+                        tools:ignore="HardcodedText,RtlSymmetry">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/cityName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Fetching"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"
+                        android:paddingStart="20dp"
+                        tools:ignore="HardcodedText,RtlSymmetry">
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
+
+            //Right Side
+            <LinearLayout
+                android:id="@+id/linearLayout_top_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/weatherSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/questionmark"
+                    tools:ignore="ContentDescription">
+                </ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+        //Text (Tip Notification)
+        <LinearLayout
+            android:id="@+id/linearLayout_middle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/linearLayout_top">
 
             <TextView
-                android:id="@+id/textView_weather"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_margin="10dp"
-                android:text="@string/suggestion_text_normal"
+                android:id="@+id/dailyRequirementTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:gravity="center"
-                tools:ignore="TextSizeCheck"/>
+                android:padding="8dp"
+                android:text="@string/daily_requirement"
+                tools:ignore="MissingConstraints" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout_top"
+            android:layout_below="@+id/linearLayout_middle"
             android:layout_marginBottom="100dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
             tools:ignore="NotSibling">
 
             <LinearLayout
-                android:id="@+id/linearLayout_bottle1"
+                android:id="@+id/linearLayout_bottom_left"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
                 tools:ignore="UseCompoundDrawables">
+                <TextView
+                    android:id="@+id/textView_suggested_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/amount1"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/textView_suggested_amount_number1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
                 <ImageView
-                    android:id="@+id/imageView_emptyBottle1"
+                    android:id="@+id/imageView_bottle_left"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/bottle_empty"
+                    android:src="@drawable/bottle_100"
                     tools:ignore="NestedWeights"/>
                 <TextView
-                    android:id="@+id/textView_emptyBottle1"
+                    android:id="@+id/textView_full_amount_percentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/bottle1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/full_amount_percentage"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -109,39 +220,39 @@
                     android:padding="10dp"
                     tools:ignore="UselessParent">
                     <RadioButton
-                        android:id="@+id/radioButton1"
+                        android:id="@+id/rb1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="radio_button_clicked"
-                        android:text="@string/radio_button1"
+                        android:text="@string/quarter_amount"
                         tools:ignore="VisualLintButtonSize">
                     </RadioButton>
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/rb2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="radio_button_clicked"
-                        android:text="@string/radio_button2"
+                        android:text="@string/half_amount"
                         tools:ignore="VisualLintButtonSize">
                     </RadioButton>
                     <RadioButton
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/rb3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="radio_button_clicked"
-                        android:text="@string/radio_button3"
+                        android:text="@string/three_quarters_amount"
                         tools:ignore="VisualLintButtonSize">
                     </RadioButton>
                     <RadioButton
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/rb4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="radio_button_clicked"
-                        android:text="@string/radio_button4"
+                        android:text="@string/full_amount"
                         tools:ignore="VisualLintButtonSize">
                     </RadioButton>
                     <Button
@@ -157,14 +268,38 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout_bottom_right"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center_horizontal"
+                android:gravity="center_vertical"
                 tools:ignore="UseCompoundDrawables">
+                <TextView
+                    android:id="@+id/textView_consumed_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/amount2"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/textView_suggested_amount_number2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
                 <ImageView
-                    android:id="@+id/imageView_emptyBottle2"
+                    android:id="@+id/imageView_bottle_right"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -172,11 +307,13 @@
                     android:src="@drawable/bottle_empty"
                     tools:ignore="NestedWeights"/>
                 <TextView
-                    android:id="@+id/textView_emptyBottle2"
+                    android:id="@+id/textView_certain_amount_percentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/bottle2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/empty_amount_percentage"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -227,7 +364,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.navTheme"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
-        app:headerLayout="@layout/right_drawer_menu_home_screen_header"
+        app:headerLayout="@layout/top_left_drawer_menu_home_screen_header"
         app:menu="@menu/top_left_drawer_menu_home_screen"
         tools:ignore="VisualLintBounds" />
 </androidx.drawerlayout.widget.DrawerLayout>

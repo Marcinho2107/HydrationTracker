@@ -1,20 +1,35 @@
 <resources>
     <string name="app_name">HydrationTracker</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     //Location
-    <string name="current_location">Current Location</string>
+    <string name="city">Write Location</string>
     <string name="get_location">Get Location</string>
+    <string name="city_name">Enter City Name</string>
+    <string name="no_location">Not able to get location</string>
+    <string name="back">BACK</string>
+    <string name="go">GO</string>
+
     //Weather
+    <string name="daily_requirement">Daily Requirement Text</string>
+    <string name="temperature">Temperature</string>
     <string name="suggestion_text_normal">It will be normal weather today,so your daily requirement stays the same</string>
     <string name="suggestion_text_warmer">It will be warm weather today,so your daily requirement has been increased</string>
+
     //(home_screen)
+    <string name="amount1">Suggested Amount</string>
+    <string name="amount2">Consumed Amount</string>
     <string name="drunk_it">Drunk It</string>
-    <string name="radio_button1">250ml</string>
-    <string name="radio_button2">500ml</string>
-    <string name="radio_button3">750ml</string>
-    <string name="radio_button4">1L</string>
-    <string name="bottle1">Drink</string>
-    <string name="bottle2">Drunk</string>
+
+    <string name="empty_amount">-</string>
+    <string name="quarter_amount">250ml</string>
+    <string name="half_amount">500ml</string>
+    <string name="three_quarters_amount">750ml</string>
+    <string name="full_amount">1L</string>
+
+    <string name="empty_amount_percentage">0%</string>
+    <string name="full_amount_percentage">100%</string>
+
     //(top_left_drawer_menu_home_screen)
     <string name="day_tracking">Day Tracking</string>
     <string name="week_tracking">Week Tracking</string>
@@ -22,6 +37,7 @@
     <string name="info">Info</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
     //(bottom_nav_menu_home_screen)
     <string name="user">User</string>
     <string name="progress">Progress</string>
@@ -30,8 +46,16 @@
 
 
 
+    //alert_dialog
+    <string name="alert1">Good Job!</string>
+    <string name="alert2">You are staying hydrated!</string>
+    <string name="ok">OK</string>
+
+
+
+
     //(main_activity)
-    <string name="HYDRATIONTRACKER">HYDRATION-TRACKER</string>
+    <string name="ht">HYDRATION-TRACKER</string>
     <string name="username">Nickname</string>
     <string name="password">Password</string>
     <string name="login">LogIn</string>

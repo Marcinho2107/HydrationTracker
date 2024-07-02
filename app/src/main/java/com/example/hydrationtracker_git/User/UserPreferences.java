@@ -1,12 +1,14 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.User;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+
 public class UserPreferences {
     private static final String PREFS_NAME = "UserPrefs";
-    private SharedPreferences preferences;
+    private static final String KEY_WASSERBEDARF = "wasserbedarf";
+    private final SharedPreferences preferences;
 
     public UserPreferences(Context context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -65,5 +67,8 @@ public class UserPreferences {
 
     public boolean isUsernameTaken(String username) {
         return preferences.contains(username + "_username");
+    }
+    public SharedPreferences getSharedPreferences() {
+        return preferences;
     }
 }

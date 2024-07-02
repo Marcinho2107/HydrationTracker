@@ -17,38 +17,31 @@
         android:theme="@style/Theme.HydrationTracker_GIT"
         tools:targetApi="31">
         <activity
-            android:name=".UserActivity"
+            android:name=".User.UserActivity"
             android:exported="false" />
         <activity
-            android:name=".ProgressActivity"
+            android:name=".MainMenu.ProgressActivity"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
+            android:name=".MainMenu.MainScreen"
             android:exported="true" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Register_and_Login.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".WasserbedarfActivity"
-            android:exported="true">
-        </activity>
-
+            android:name=".Water.WasserbedarfActivity"
+            android:exported="true"/>
         <activity
-            android:name=".Wasserbedarfsrechner"
-            android:exported="true">
-        </activity>
-
+            android:name=".Water.Wasserbedarfsrechner"
+            android:exported="true"/>
         <activity
-            android:name=".UserPreferences"
-            android:exported="true">
-        </activity>
-
+            android:name=".User.UserPreferences"
+            android:exported="true"/>
         <activity
-                android:name=".EditUserActivity"
-                android:exported="true"/>
-
+            android:name=".User.EditUserActivity"
+            android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Register_and_Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

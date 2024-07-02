@@ -1,9 +1,12 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.MainMenu;
 
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hydrationtracker_git.R;
+import com.example.hydrationtracker_git.User.UserActivity;
 
 public class ProgressActivity extends AppCompatActivity {
 

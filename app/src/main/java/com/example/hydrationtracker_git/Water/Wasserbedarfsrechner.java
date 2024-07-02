@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.Water;
 
 public class Wasserbedarfsrechner {
 
