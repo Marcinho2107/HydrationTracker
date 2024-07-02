@@ -35,6 +35,7 @@
     <string name="week_tracking">Week Tracking</string>
     <string name="month_tracking">Month Tracking</string>
     <string name="info">Info</string>
+    <string name="info_beta">This section will provide all the necessary information about the app and how it works. As the app is currently in beta, this information is not yet available. Once the app is publicly released and available for download, this fragment will display comprehensive information on how to use the app.</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
@@ -51,6 +52,7 @@
 
     //Progress
     <string name="weekly_tracking">Your Weekly Progress:</string>
+
 
 
     //(main_activity)

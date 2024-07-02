@@ -406,4 +406,7 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             imageViewBottleRight.setImageResource(R.drawable.bottle_25);
         }
     }
+
+    public void radio_button_clicked(View view) {
+    }
 }

@@ -3,12 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoFragment">
-    <TextView
+    tools:context=".Drawer.InfoFragment">
+
+    <RelativeLayout
+        android:id="@+id/fragment_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/info"
-        android:textSize="36sp"
-        android:gravity="center"
-        android:textColor="@color/colorWhite"/>
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="65dp"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/fragment_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="65dp"
+            android:gravity="center"
+            android:src="@drawable/baseline_mood_bad_24"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/fragment_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/fragment_imageView"
+            android:text="@string/info_beta"
+            android:textColor="@color/colorBlack"
+            android:textSize="28sp"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
 </FrameLayout>
