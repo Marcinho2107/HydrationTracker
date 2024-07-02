@@ -1,3 +1,7 @@
+/**
+ * Abstrakter Dienst zur Überwachung der Temperatur der Gerätebatterie und zur Anzeige einer Benachrichtigung, wenn sie einen Schwellenwert überschreitet.
+ * Erweiterungsklassen müssen eine spezifische Logik implementieren, um festzustellen, wann das Gerät überhitzt ist.
+ */
 package com.example.hydrationtracker_git.TemperatureMonitoring;
 
 import android.annotation.SuppressLint;
@@ -20,7 +24,9 @@ import java.util.Objects;
 
 public abstract class TemperatureMonitoringService extends Service {
 
-
+    /**
+     * BroadcastReceiver zur Überwachung von Batterietemperaturänderungen und zum Auslösen entsprechender Aktionen.
+     */
     private final BroadcastReceiver batteryInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -46,6 +52,11 @@ public abstract class TemperatureMonitoringService extends Service {
         super.onDestroy();
     }
 
+    /**
+     * Überprüft, ob die Temperatur des Telefons über einem Schwellenwert liegt.
+     *
+     * @return true, wenn die Temperatur des Telefons über dem Schwellenwert liegt, sonst false.
+     */
     private boolean phoneHeating() {
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = registerReceiver(null, filter);
@@ -60,6 +71,9 @@ public abstract class TemperatureMonitoringService extends Service {
         }
     }
 
+    /**
+     * Shows a notification if the phone temperature is above the threshold.
+     */
     @SuppressLint("ObsoleteSdkInt")
     private void showNotification() {
         Intent notificationIntent = new Intent(this, MainScreen.class);
@@ -79,6 +93,12 @@ public abstract class TemperatureMonitoringService extends Service {
         notificationManager.notify(1, builder.build());
     }
 
+    /**
+     * onBind-Methode überschrieben, um null zurückzugeben, da es sich nicht um einen gebundenen Dienst handelt.
+     *
+     * @param intent Der Intent, der zur Bindung an diesen Dienst verwendet wurde, wie in Context.bindService angegeben.
+     * @return Gibt immer null zurück.
+     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

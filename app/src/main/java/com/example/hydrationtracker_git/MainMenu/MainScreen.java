@@ -1,3 +1,7 @@
+/**
+ * Diese Klasse stellt den Hauptbildschirm der Hydration Tracker-Anwendung dar.
+ * Sie enthält die Navigation, Wetter- und Standortdaten, den Hydrationsbedarf des Benutzers und UI-Elemente für die Benutzerinteraktion.
+ */
 package com.example.hydrationtracker_git.MainMenu;
 
 import android.annotation.SuppressLint;
@@ -211,6 +215,13 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             super.onBackPressed();
         }
     }
+
+    /**
+     * Eröffnet eine neue Aktivität basierend auf der angegebenen Aktivitätsklasse.
+     * Übergibt den aktuellen Benutzernamen als Extra an die neue Aktivität.
+     *
+     * @param activityClass Die Klasse der zu öffnenden Aktivität.
+     */
     private void openActivity(Class<?> activityClass) {
         Intent intent = new Intent(this, activityClass);
         intent.putExtra("username", currentUsername);
@@ -245,16 +256,31 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         this.totalSelectedAmount = totalSelectedAmount; // assuming totalSelectedAmount is a class-level variable
     }
 
+    /**
+     * Platzhalter-Methode zur Berechnung und Rückgabe eines Prozentsatzes.
+     *
+     * @return Gibt immer 0 zurück (Platzhalter-Implementierung).
+     */
     private double calculatePercentage() {
         return 0;
     }
 
+    /**
+     * Holt Wetterdaten für eine neue Stadt über die OpenWeatherMap API.
+     *
+     * @param city Der Name der Stadt, für die Wetterdaten angefordert werden.
+     */
     private void getWeatherForNewCity(String city){
         RequestParams params=new RequestParams();
         params.put("q", city);
         params.put("appid", API_KEY);
         calculateData(params);
     }
+
+    /**
+     * Holt Wetterdaten für den aktuellen Gerätestandort anhand von GPS-Koordinaten ab.
+     * Wenn die Standortgenehmigung nicht erteilt wird, fordert sie der Benutzer an.
+     */
     private void getWeatherForCurrentLocation() {
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mLocationListener = new LocationListener() {
@@ -297,6 +323,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             Toast.makeText(MainScreen.this, "Location permission denied by User", Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * Führt einen API-Aufruf durch, um Wetterdaten mit den angegebenen Parametern abzurufen.
+     *
+     * @param params Abfrageparameter für den API-Aufruf.
+     */
     private void calculateData(RequestParams params){
         AsyncHttpClient client=new AsyncHttpClient();
         client.get(Open_Weather_URL, params, new JsonHttpResponseHandler(){
@@ -313,9 +345,19 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             }
         });
     }
+
+    /**
+     * Zeigt eine kurze Toast-Meldung an, die darauf hinweist, dass der Standort nicht abgerufen werden kann.
+     */
     private void showToast() {
         Toast.makeText(this, "Can't get location!", Toast.LENGTH_SHORT).show();
     }
+
+    /**
+     * Analysiert die Temperatur aus dem angegebenen Temperaturtext.
+     * Entfernt nicht-numerische Zeichen aus dem Text und versucht, den numerischen Teil in eine Ganzzahl zu zerlegen.
+     * Schlägt das Parsen fehl, wird 0 als Standardwert zurückgegeben.
+     */
     @SuppressLint("SetTextI18n")
     private void updateUI(weatherData weather){
         mTemperature.setText(weather.getWdTemperature());
@@ -342,6 +384,18 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
 
         return temperature;
     }
+
+    /**
+     * Aktualisiert den Text von daily requirement TextView auf der Grundlage der Temperaturinformationen.
+     * Die Methode analysiert die Temperatur aus dem angegebenen Text und setzt dann den Text
+     * von {@code dailyRequirementTextView}, um die entsprechenden Trinkmengen
+     * basierend auf der geparsten Temperatur.
+     *
+     * @param temperatureText Der Text mit der Temperaturinformation.
+     * Sollte in einem Format vorliegen, das in eine Ganzzahl geparst werden kann.
+     * Wenn das Parsen fehlschlägt oder die Temperatur 0 ist, werden entsprechende Meldungen
+     * werden entsprechende Meldungen angezeigt, die auf fehlende Wetterinformationen hinweisen.
+     */
     @SuppressLint("SetTextI18n")
     private void updateDailyRequirementText(String temperatureText) {
         int temperature = parseTemperature(temperatureText); // Parse temperature from temperatureText
@@ -365,6 +419,10 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
+    /**
+     * Berechnet und zeigt den Prozentsatz der verbrauchten Menge im Verhältnis zur empfohlenen Menge an.
+     * Aktualisiert die UI-Elemente, die den berechneten Prozentsatz anzeigen, und aktualisiert das Flaschenbild entsprechend.
+     */
     // Radio Buttons + Calculations + Images
     private void calculateAndDisplayPercentage() {
         String suggestedAmountStr = suggestedAmountNumber1TextView.getText().toString().trim();
@@ -378,6 +436,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
             updateBottleImage(percentage);
         }
     }
+
+    /**
+     * Ruft den vorgeschlagenen Betrag Nummer 1 von der Benutzeroberfläche ab.
+     *
+     * @return Der vorgeschlagene Betrag Nummer 1, geparst als Ganzzahl.
+     */
     private int getSuggestedAmountNumber1() {
         String suggestedAmountStr = suggestedAmountNumber1TextView.getText().toString().trim();
         if (!suggestedAmountStr.isEmpty()) {
@@ -385,6 +449,11 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         }
         return 0;
     }
+
+    /**
+     * Zeigt dem Benutzer einen Benachrichtigungsdialog an.
+     * Der Dialog zeigt eine Warnmeldung an und wird beim Anklicken der Schaltfläche geschlossen.
+     */
     @SuppressLint("SetTextI18n")
     private void showNotification() {
         View dialogView = getLayoutInflater().inflate(R.layout.alert_dialog, null);
@@ -395,6 +464,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         alertDialog.show();
         button.setOnClickListener(v -> alertDialog.dismiss());
     }
+
+    /**
+     * Aktualisiert das Flaschenbild auf der Grundlage des angegebenen Prozentsatzes.
+     *
+     * @param percentage Der Prozentwert, der bestimmt, welches Bild angezeigt werden soll.
+     */
     private void updateBottleImage(double percentage) {
         if (percentage >= 100) {
             imageViewBottleRight.setImageResource(R.drawable.bottle_100);
@@ -407,6 +482,12 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
+    /**
+     * Callback-Methode, die aufgerufen wird, wenn ein Optionsfeld angeklickt wird.
+     * Diese Methode ist dafür gedacht, das Klick-Ereignis von Optionsschaltflächen in der Benutzeroberfläche zu behandeln.
+     *
+     * @param view Die Ansicht, die angeklickt wurde (in diesem Fall ein Optionsfeld).
+     */
     public void radio_button_clicked(View view) {
     }
 }

@@ -1,3 +1,8 @@
+/**
+ * Diese Aktivität zeigt den Fortschritt des Benutzers in Bezug auf die Überwachung der Flüssigkeitszufuhr an.
+ * Sie zeigt das Profilbild des Benutzers, seinen Benutzernamen und die wöchentliche Wasseraufnahme an.
+ * Der Benutzer kann von dieser Aktivität aus zurück zum Hauptmenü navigieren.
+ */
 package com.example.hydrationtracker_git.User_Progress;
 
 import android.annotation.SuppressLint;
@@ -68,6 +73,10 @@ public class ProgressActivity extends AppCompatActivity {
         });
         displayWeeklyTracking(username);
     }
+    /**
+     * Ruft die wöchentlichen Daten zur Wasseraufnahme für den angegebenen Benutzernamen ab und zeigt sie an.
+     * @param username Der Benutzername, für den die wöchentlichen Aufnahmedaten angezeigt werden sollen.
+     */
     private void displayWeeklyTracking(String username) {
         UserPreferences userPreferences = new UserPreferences(this);
         List<Integer> weeklyIntake = userPreferences.getWeeklyIntake(username);
