@@ -1,4 +1,4 @@
-package com.example.hydrationtracker_git;
+package com.example.hydrationtracker_git.Register_and_Login;
 
 
 
@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.hydrationtracker_git.MainMenu.MainScreen;
+import com.example.hydrationtracker_git.R;
+import com.example.hydrationtracker_git.User.UserPreferences;
+
+public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 if (userPreferences.login(username, password)) {
-                    Toast.makeText(MainActivity.this, "The login was successful!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, MainScreen.class);
+                    Toast.makeText(Login.this, "The login was successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, MainScreen.class);
                     intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MainActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Login failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(Login.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });

@@ -65,8 +65,8 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
     String currentUsername; // Hinzufügen einer Variablen, um den aktuellen Benutzernamen zu speichern
 
     // Radio Buttons + Calculations + Images
-    private TextView suggestedAmountNumber2TextView;
     private TextView suggestedAmountNumber1TextView;
+    private TextView suggestedAmountNumber2TextView;
     private TextView certainAmountPercentageTextView;
     private ImageView imageViewBottleRight;
     private int selectedAmount = 0;
@@ -103,6 +103,10 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
                 // Den aktuellen Benutzernamen an die UserActivity übergeben
                 Intent intent2=new Intent(MainScreen.this, UserActivity.class);
                 intent2.putExtra("username", currentUsername);
+                intent2.putExtra("suggestedAmountNumber2", suggestedAmountNumber2TextView.getText().toString());
+                intent2.putExtra("certainAmountPercentage", certainAmountPercentageTextView.getText().toString());
+                intent2.putExtra("selectedAmount", selectedAmount);
+                intent2.putExtra("totalSelectedAmount", totalSelectedAmount);
                 startActivity(intent2);
                 return true;
             }
@@ -135,6 +139,8 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
 
         // Radio Buttons + Calculations + Images
         suggestedAmountNumber1TextView = findViewById(R.id.textView_suggested_amount_number1);
+        suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
+        certainAmountPercentageTextView = findViewById(R.id.textView_certain_amount_percentage);
         suggestedAmountNumber2TextView = findViewById(R.id.textView_suggested_amount_number2);
         certainAmountPercentageTextView = findViewById(R.id.textView_certain_amount_percentage);
         Button updateButton = findViewById(R.id.button);
@@ -214,7 +220,26 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
         }else{
             getWeatherForCurrentLocation();
         }
+        String suggestedAmountNumber2 = mIntent.getStringExtra("suggestedAmountNumber2");
+        String certainAmountPercentage = mIntent.getStringExtra("certainAmountPercentage");
+        int selectedAmount = mIntent.getIntExtra("selectedAmount", 0);
+        int totalSelectedAmount = mIntent.getIntExtra("totalSelectedAmount", 0);
+
+        if (suggestedAmountNumber2 != null) {
+            suggestedAmountNumber2TextView.setText(suggestedAmountNumber2);
+        }
+        if (certainAmountPercentage != null) {
+            certainAmountPercentageTextView.setText(certainAmountPercentage);
+        }
+        updateBottleImage(calculatePercentage());
+        this.selectedAmount = selectedAmount; // assuming selectedAmount is a class-level variable
+        this.totalSelectedAmount = totalSelectedAmount; // assuming totalSelectedAmount is a class-level variable
     }
+
+    private double calculatePercentage() {
+        return 0;
+    }
+
     private void getWeatherForNewCity(String city){
         RequestParams params=new RequestParams();
         params.put("q", city);
@@ -296,7 +321,7 @@ public class MainScreen extends AppCompatActivity implements NavigationView.OnNa
 
         if (temperatureText != null && !temperatureText.isEmpty()) {
             // Remove non-numeric characters from the string
-            String numericPart = temperatureText.replaceAll("[^\\d]", "");
+            String numericPart = temperatureText.replaceAll("\\D", "");
 
             try {
                 // Parse the numeric part to an integer

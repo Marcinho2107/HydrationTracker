@@ -1,5 +1,6 @@
 package com.example.hydrationtracker_git.User;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import com.example.hydrationtracker_git.R;
 public class UserActivity extends AppCompatActivity {
     private static final String TAG = "UserActivity";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,13 @@ public class UserActivity extends AppCompatActivity {
         Button buttonEdit = findViewById(R.id.button2);
         Button buttonBackToMainMenu = findViewById(R.id.buttonBackToMainMenu);
 
-
         UserPreferences userPreferences = new UserPreferences(this);
         String username = getIntent().getStringExtra("username");
+        String suggestedAmountNumber2 = getIntent().getStringExtra("suggestedAmountNumber2");
+        String certainAmountPercentage = getIntent().getStringExtra("certainAmountPercentage");
+        int selectedAmount = getIntent().getIntExtra("selectedAmount", 0);
+        int totalSelectedAmount = getIntent().getIntExtra("totalSelectedAmount", 0);
+
         Log.d(TAG, "Username from Intent: " + username);
 
         if (username == null || username.isEmpty()) {
@@ -46,8 +52,6 @@ public class UserActivity extends AppCompatActivity {
         String geschlecht = userPreferences.getGeschlecht(username);
         String profileImagePath = userPreferences.getProfileImagePath(username);
         int wasserbedarf = userPreferences.getWasserbedarf(username);
-
-
 
         tvUsername.setText("Nickname: " + username);
         tvAlter.setText("Age: " + alter);
@@ -75,6 +79,10 @@ public class UserActivity extends AppCompatActivity {
         buttonBackToMainMenu.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, MainScreen.class);
             intent.putExtra("username", username);
+            intent.putExtra("suggestedAmountNumber2", suggestedAmountNumber2);
+            intent.putExtra("certainAmountPercentage", certainAmountPercentage);
+            intent.putExtra("selectedAmount", selectedAmount);
+            intent.putExtra("totalSelectedAmount", totalSelectedAmount);
             startActivity(intent);
             finish();
         });
