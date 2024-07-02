@@ -1,7 +1,5 @@
 package com.example.hydrationtracker_git.Register_and_Login;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +10,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hydrationtracker_git.MainMenu.MainScreen;
 import com.example.hydrationtracker_git.R;
+import com.example.hydrationtracker_git.TemperatureMonitoring.TemperatureMonitoringService;
 import com.example.hydrationtracker_git.User.UserPreferences;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Temperature Monitoring
+        startService(new Intent(this, TemperatureMonitoringService.class));
 
         EditText etUsername = findViewById(R.id.etUsername);
         EditText etPassword = findViewById(R.id.etPassword);
@@ -42,7 +44,6 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
-
 
         btnGoToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
